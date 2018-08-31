@@ -1,18 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.cours5b5.vickielanglois.vues.VParametres xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parametres">
+    tools:context=".activites.AParametres">
+
 
     <TextView
+        android:id="@+id/ID_hauteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="83dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginLeft="91dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="115dp"
+        android:text="@string/hauteur"
+        app:layout_constraintBottom_toTopOf="@+id/ID_largeur"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerH"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <TextView
+        android:id="@+id/ID_largeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginLeft="91dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="82dp"
+        android:text="@string/largeur"
+        app:layout_constraintBottom_toTopOf="@+id/ID_gamer"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ID_hauteur"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <TextView
+        android:id="@+id/ID_gamer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="129dp"
+        android:layout_marginEnd="240dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="240dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="46dp"
+        android:text="@string/gagner"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ID_largeur"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="323dp" />
+
+    <Spinner
+        android:id="@+id/spinnerH"
+        android:layout_width="147dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="115dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <Spinner
+        android:id="@+id/spinnerL"
+        android:layout_width="147dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="79dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="82dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerH"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <Spinner
+        android:id="@+id/spinnerG"
+        android:layout_width="147dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="124dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="82dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="41dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerL"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="323dp" />
+
+</ca.cours5b5.vickielanglois.vues.VParametres>
