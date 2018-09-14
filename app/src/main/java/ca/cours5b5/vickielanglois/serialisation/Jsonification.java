@@ -7,23 +7,14 @@ import java.util.Map;
 
 public class Jsonification {
 
-    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static Gson gson;
 
-    public static <T extends Serialisable> T aPartirJson(Class<T> classeAImplanter, String Json){
-
+    public static Map<String, Object> enObjetJson(String json) {
+        return null;
     }
 
-    public static String enJson(Serialisable obj){
-
-
-    }
-
-    private static <T extends Serialisable> T aPartirJson(Serialisable obj, String json){
-
-    }
-
-    private static <T extends Serialisable> T aPartirObjetJson(Serialisable obj, Map<String, Object> objetJson){
-
+    public static String enChaine(Map<String, Object> objectJson){
+        return null;
     }
 
 }

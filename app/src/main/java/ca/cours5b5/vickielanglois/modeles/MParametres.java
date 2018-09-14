@@ -1,7 +1,9 @@
 package ca.cours5b5.vickielanglois.modeles;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ca.cours5b5.vickielanglois.global.GConstantes;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
@@ -12,20 +14,54 @@ public class MParametres extends Modele {
 
     @AttributSerialisable
     public Integer hauteur;
+    private final String _hauteur = "hauteur";
 
     @AttributSerialisable
     public Integer largeur;
+    private final String _largeur = "largeur";
 
     @AttributSerialisable
+
     public Integer pourGagner;
+    private final String _pourGagner = "pourGagner";
 
-    private List<Integer> choixHauteur;
-    private List<Integer> choixLargeur;
-    private List<Integer> choixPourGagner;
+    private List<Integer> getChoixHauteur;
+    private List<Integer> getChoixLargeur;
+    private List<Integer> getChoixPourGagner;
 
-    public MParametres() {
+    @Override
+    public void aPartirObjetJson(Map<String, Object> objetJson) {
 
-        genererListesDeChoix();
+       for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+
+           String cle = entry.getKey();
+           Object valeur = entry.getValue();
+
+           if(cle.equals(_hauteur)){
+               hauteur = Integer.valueOf((String) valeur);
+           }else if(cle.equals(_largeur)){
+               largeur = Integer.valueOf((String) valeur);
+           }else{
+               pourGagner = Integer.valueOf((String) valeur);
+           }
+       }
+    }
+
+    @Override
+    public Map<String, Object> enObjetJson() {
+
+        Map<String, Object> objetJson = new HashMap<>();
+        objetJson.put(_hauteur, hauteur.toString());
+        objetJson.put(_largeur, largeur.toString());
+        objetJson.put(_pourGagner, pourGagner.toString());
+
+        return objetJson;
+    }
+
+
+  /*  public MParametres() {
+
+   /*     genererListesDeChoix();
     }
 
     public List<Integer> getChoixHauteur(){
@@ -102,5 +138,5 @@ public class MParametres extends Modele {
 
         choixPourGagner = genererListeChoix(GConstantes.MIN_POURGAGNER, GConstantes.MAX_POURGAGNER);
 
-    }
+    }*/
 }

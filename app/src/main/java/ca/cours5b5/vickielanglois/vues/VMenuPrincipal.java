@@ -27,6 +27,6 @@ public class VMenuPrincipal extends Vue {
     @Override
     protected void onFinishInflate(){
         super.onFinishInflate();
-        log("onFinishInflate");
+        Log("onFinishInflate");
     }
 }
