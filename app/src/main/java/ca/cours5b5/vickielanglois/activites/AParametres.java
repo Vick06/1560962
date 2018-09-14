@@ -60,6 +60,7 @@ public class AParametres extends Activite {
         Map<String, Object> objetJson = MParametres.instance.enObjetJson();
         String json = Jsonification.enChaine(objetJson);
         outState.putString("MParametres", json);
+        Log.d("Atelier05", AParametres.class.getSimpleName()+ "::restaurerParametres, cle: MParametres");
     }
 
 

@@ -28,7 +28,7 @@ public abstract class Vue extends ConstraintLayout{
 
     }
 
-    Spinner spinnerH, spinnerL, spinnerG;
+
 
    /* spinnerH = this.findView(R.id.spinnerH);
     spinnerH.setAdapter(adapterH);

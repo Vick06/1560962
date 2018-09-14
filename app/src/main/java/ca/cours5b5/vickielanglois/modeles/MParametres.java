@@ -10,19 +10,19 @@ import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
 public class MParametres extends Modele {
 
-    public static MParametres instance;
+    public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public Integer hauteur;
+    public Integer hauteur = GConstantes.DEFAUT_HAUTEUR;
     private final String _hauteur = "hauteur";
 
     @AttributSerialisable
-    public Integer largeur;
+    public Integer largeur = GConstantes.DEFAUT_LARGEUR;
     private final String _largeur = "largeur";
 
     @AttributSerialisable
 
-    public Integer pourGagner;
+    public Integer pourGagner = GConstantes.DEFAUT_POURGAGNER;
     private final String _pourGagner = "pourGagner";
 
     private List<Integer> getChoixHauteur;
@@ -59,24 +59,41 @@ public class MParametres extends Modele {
     }
 
 
-  /*  public MParametres() {
-
-   /*     genererListesDeChoix();
-    }
-
     public List<Integer> getChoixHauteur(){
-        return choixHauteur;
+
+        return genererListeChoix(GConstantes.MIN_HAUTEUR, GConstantes.MAX_HAUTEUR);
     }
 
     public List<Integer> getChoixLargeur(){
-        return choixLargeur;
+
+        return genererListeChoix(GConstantes.MIN_LARGEUR, GConstantes.MAX_LARGEUR);
     }
 
     public List<Integer> getChoixPourGagner(){
-        return choixPourGagner;
+
+        return genererListeChoix(GConstantes.MIN_POURGAGNER, GConstantes.MAX_POURGAGNER);
     }
 
-    public Integer getHauteur(){
+    public List<Integer> genererListeChoix(int min, int max){
+
+        ArrayList<Integer> valeur = new ArrayList<>();
+
+        for(; min <= max; min++){
+            valeur.add(min);
+        }
+
+        return valeur;
+    }
+
+
+    public MParametres() {
+
+        getChoixHauteur = getChoixHauteur();
+        getChoixLargeur = getChoixLargeur();
+        getChoixPourGagner = getChoixPourGagner();
+    }
+
+      public Integer getHauteur(){
         return hauteur;
     }
 
@@ -89,7 +106,7 @@ public class MParametres extends Modele {
     }
 
 
-    public void setHauteur(int hauteur){
+  /*  public void setHauteur(int hauteur){
 
     }
 
