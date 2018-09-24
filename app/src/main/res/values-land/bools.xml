@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orientation">Bonjour portrait!</string>
+
+    <bool name="si_portrait">false</bool>
+
+
 </resources>

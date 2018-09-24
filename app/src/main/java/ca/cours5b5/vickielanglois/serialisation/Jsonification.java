@@ -5,16 +5,17 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
+import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
+
 public class Jsonification {
 
-    private static Gson gson;
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static Map<String, Object> enObjetJson(String json) {
-        return null;
+    public static Map<String, Object> aPartirChaineJson(String json) throws ErreurSerialisation {
+        return gson.fromJson(json, Map.class);
     }
 
-    public static String enChaine(Map<String, Object> objectJson){
-        return null;
+    public static String enChaineJson(Map<String, Object> objetJson) throws ErreurSerialisation {
+        return gson.toJson(objetJson);
     }
-
 }

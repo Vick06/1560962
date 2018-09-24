@@ -1,15 +1,26 @@
 package ca.cours5b5.vickielanglois.global;
 
+
+import android.util.Log;
+
 public class GConstantes {
 
-    public static int MIN_HAUTEUR = 4;
-    public static int MIN_LARGEUR = 4;
-    public static int MIN_POURGAGNER= 3;
-    public static int MAX_HAUTEUR = 10;
-    public static int MAX_LARGEUR = 10;
-    public static int MAX_POURGAGNER = 4;
-    public static int DEFAUT_HAUTEUR = 6;
-    public static int DEFAUT_LARGEUR = 7;
-    public static int DEFAUT_POURGAGNER = 4;
+    static{
+        Log.d("Atelier04", GConstantes.class.getSimpleName() + "::static");
+    }
+
+    public static final int LARGEUR_MIN = 4;
+    public static final int LARGEUR_MAX = 10;
+    public static final int LARGEUR_PAR_DEFAUT = 7;
+
+    public static final int HAUTEUR_MIN = 4;
+    public static final int HAUTEUR_MAX = 10;
+    public static final int HAUTEUR_PAR_DEFAUT = 6;
+
+    public static final int POUR_GAGNER_MIN = 3;
+    public static final int POUR_GAGNER_MAX = 5;
+    public static final int POUR_GAGNER_PAR_DEFAUT = 4;
+
+    public static final String SEPARATEUR_DE_CHEMIN="/";
 
 }

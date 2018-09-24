@@ -1,99 +1,66 @@
 package ca.cours5b5.vickielanglois.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
 import ca.cours5b5.vickielanglois.global.GConstantes;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
 public class MParametres extends Modele {
 
-    public static MParametres instance = new MParametres();
+    // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
+    public static MParametres instance;
 
-    @AttributSerialisable
-    public Integer hauteur = GConstantes.DEFAUT_HAUTEUR;
-    private final String _hauteur = "hauteur";
+    static{
+        Log.d("Atelier04", MParametres.class.getSimpleName() + "::static");
 
-    @AttributSerialisable
-    public Integer largeur = GConstantes.DEFAUT_LARGEUR;
-    private final String _largeur = "largeur";
-
-    @AttributSerialisable
-
-    public Integer pourGagner = GConstantes.DEFAUT_POURGAGNER;
-    private final String _pourGagner = "pourGagner";
-
-    private List<Integer> getChoixHauteur;
-    private List<Integer> getChoixLargeur;
-    private List<Integer> getChoixPourGagner;
-
-    @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) {
-
-       for(Map.Entry<String, Object> entry : objetJson.entrySet()){
-
-           String cle = entry.getKey();
-           Object valeur = entry.getValue();
-
-           if(cle.equals(_hauteur)){
-               hauteur = Integer.valueOf((String) valeur);
-           }else if(cle.equals(_largeur)){
-               largeur = Integer.valueOf((String) valeur);
-           }else{
-               pourGagner = Integer.valueOf((String) valeur);
-           }
-       }
+        instance = new MParametres();
     }
 
-    @Override
-    public Map<String, Object> enObjetJson() {
+    @AttributSerialisable
+    public Integer hauteur;
+    private final String __hauteur = "hauteur";
 
-        Map<String, Object> objetJson = new HashMap<>();
-        objetJson.put(_hauteur, hauteur.toString());
-        objetJson.put(_largeur, largeur.toString());
-        objetJson.put(_pourGagner, pourGagner.toString());
+    @AttributSerialisable
+    public Integer largeur;
+    private final String __largeur = "largeur";
 
-        return objetJson;
+    @AttributSerialisable
+    public Integer pourGagner;
+    private final String __pourGagner = "pourGagner";
+
+    private List<Integer> choixHauteur;
+    private List<Integer> choixLargeur;
+    private List<Integer> choixPourGagner;
+
+    public MParametres(){
+        super();
+
+        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
+        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
+        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+
+        genererListesDeChoix();
     }
-
 
     public List<Integer> getChoixHauteur(){
-
-        return genererListeChoix(GConstantes.MIN_HAUTEUR, GConstantes.MAX_HAUTEUR);
+        return choixHauteur;
     }
 
     public List<Integer> getChoixLargeur(){
-
-        return genererListeChoix(GConstantes.MIN_LARGEUR, GConstantes.MAX_LARGEUR);
+        return choixLargeur;
     }
 
     public List<Integer> getChoixPourGagner(){
-
-        return genererListeChoix(GConstantes.MIN_POURGAGNER, GConstantes.MAX_POURGAGNER);
+        return choixPourGagner;
     }
 
-    public List<Integer> genererListeChoix(int min, int max){
-
-        ArrayList<Integer> valeur = new ArrayList<>();
-
-        for(; min <= max; min++){
-            valeur.add(min);
-        }
-
-        return valeur;
-    }
-
-
-    public MParametres() {
-
-        getChoixHauteur = getChoixHauteur();
-        getChoixLargeur = getChoixLargeur();
-        getChoixPourGagner = getChoixPourGagner();
-    }
-
-      public Integer getHauteur(){
+    public Integer getHauteur() {
         return hauteur;
     }
 
@@ -105,55 +72,87 @@ public class MParametres extends Modele {
         return pourGagner;
     }
 
-
-  /*  public void setHauteur(int hauteur){
-
+    public void setHauteur(int hauteur) {
+        this.hauteur = hauteur;
     }
 
-    public void setLargeur(int largeur){
-
+    public void setLargeur(int largeur) {
+        this.largeur = largeur;
     }
 
-    public void setPourGagner(int pourGagner){
-
+    public void setPourGagner(int pourGagner) {
+        this.pourGagner = pourGagner;
     }
 
     private void genererListesDeChoix(){
-
         genererListeChoixHauteur();
         genererListeChoixLargeur();
         genererListeChoixPourGagner();
-
     }
 
     private List<Integer> genererListeChoix(int min, int max){
-
         List<Integer> listeChoix = new ArrayList<>();
 
-        for( ; min <= max; min++){
-
-            listeChoix.add(min);
+        for(int i = min; i <= max; i++){
+            listeChoix.add(i);
         }
 
         return listeChoix;
-
     }
 
     private void genererListeChoixHauteur(){
-
-       choixHauteur = genererListeChoix(GConstantes.MIN_HAUTEUR, GConstantes.MAX_HAUTEUR);
-
+        choixHauteur = genererListeChoix(GConstantes.HAUTEUR_MIN, GConstantes.HAUTEUR_MAX);
     }
 
     private void genererListeChoixLargeur(){
-
-       choixLargeur = genererListeChoix(GConstantes.MIN_LARGEUR, GConstantes.MAX_LARGEUR);
-
+        choixLargeur = genererListeChoix(GConstantes.LARGEUR_MIN, GConstantes.LARGEUR_MAX);
     }
 
     private void genererListeChoixPourGagner(){
+        choixPourGagner = genererListeChoix(GConstantes.POUR_GAGNER_MIN, GConstantes.POUR_GAGNER_MAX);
+    }
 
-        choixPourGagner = genererListeChoix(GConstantes.MIN_POURGAGNER, GConstantes.MAX_POURGAGNER);
+    @Override
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
-    }*/
+            String chaineValeur = (String) entry.getValue();
+
+            switch (entry.getKey()){
+
+                case __hauteur:
+
+                    hauteur = Integer.valueOf(chaineValeur);
+                    break;
+
+                case __largeur:
+
+                    largeur = Integer.valueOf(chaineValeur);
+                    break;
+
+
+                case __pourGagner:
+
+                    largeur = Integer.valueOf(chaineValeur);
+                    break;
+
+                default:
+
+                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
+            }
+        }
+    }
+
+
+    @Override
+    public Map<String, Object> enObjetJson() throws ErreurSerialisation {
+        Map<String, Object> objetJson = new HashMap<>();
+
+        objetJson.put(__hauteur, hauteur.toString());
+        objetJson.put(__largeur, largeur.toString());
+        objetJson.put(__pourGagner, pourGagner.toString());
+
+        return objetJson;
+
+    }
 }

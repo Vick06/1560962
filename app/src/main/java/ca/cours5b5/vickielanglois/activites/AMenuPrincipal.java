@@ -11,48 +11,32 @@ import ca.cours5b5.vickielanglois.R;
 public class AMenuPrincipal extends Activite {
 
     static{
-        Log.d("Atelier04", AParametres.class.getSimpleName()+"static");
+        Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + "::static");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
-        log("onCreate");
+    }
 
-        Button boutonParametres = this.findViewById(R.id.id_boutton);
-        boutonParametres.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // FIXME: c'est temporaire, ça va dans une action (MVC)
+        Button bouton = this.findViewById(R.id.button);
+        bouton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent change = new Intent(AMenuPrincipal.this, AParametres.class);
-                AMenuPrincipal.this.startActivity(change);
+                transitionParametres();
             }
         });
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        log("onResume");
+    private void transitionParametres(){
+        Intent intentionParametres = new Intent(this, AParametres.class);
+        startActivity(intentionParametres);
     }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        log("onPause");
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        log("onSaveInstanceState");
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        log("onDestroy");
-    }
-
 
 }
