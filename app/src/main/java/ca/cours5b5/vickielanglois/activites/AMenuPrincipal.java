@@ -32,6 +32,14 @@ public class AMenuPrincipal extends Activite {
                 transitionParametres();
             }
         });
+
+        Button bouton_jouer = this.findViewById(R.id.button_jouer);
+        bouton_jouer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void transitionParametres(){

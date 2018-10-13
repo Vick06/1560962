@@ -14,13 +14,28 @@ import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 public class MParametres extends Modele {
 
     // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
-    public static MParametres instance;
+    public static MParametres instance = new MParametres();
 
     static{
         Log.d("Atelier04", MParametres.class.getSimpleName() + "::static");
 
-        instance = new MParametres();
+        //instance = new MParametres();
     }
+
+    @AttributSerialisable
+    public MParametresPartie parametresPartie;
+    private String _parametresPartie = "parametresPartie";
+
+    private List<Integer> ChoixHauteur(){
+        return choixHauteur;
+    }
+    private List<Integer> ChoixLargeur(){
+        return choixLargeur;
+    }
+    private List<Integer> ChoixPourGagner(){
+        return choixPourGagner;
+    }
+
 
     @AttributSerialisable
     public Integer hauteur;
@@ -40,6 +55,39 @@ public class MParametres extends Modele {
 
     public MParametres(){
         super();
+
+        public List<Integer> getChoixHauteur(){
+
+        }
+        public List<Integer> getChoixLargeur(){
+
+        }
+        public List<Integer> getChoixPourGagner(){
+
+        }
+        public MParametresPartie getParametresPartie(){
+
+        }
+        private void genererListesDeChoix(){
+
+        }
+        private void genererListeChoixHauteur(){
+
+        }
+        private void genererListeChoixLargeur(){
+
+        }
+        private void genererListeChoixPourGagner(){
+
+        }
+        @Override
+        public void aPartirObjetJson(Map<String, Object> objetJson) throw ErreurSerialisation{
+
+        }
+        @Override
+        public Map<String, Object> enObjetJson() throw ErreurSerialisation{
+
+        }
 
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
