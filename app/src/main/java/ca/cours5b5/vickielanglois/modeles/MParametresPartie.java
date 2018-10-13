@@ -34,6 +34,7 @@ public class MParametresPartie {
     public MParametresPartie cloner(){
 
 
+
         /*
         Retourne une instance de MParametersPartie avec
         exactement les mêmes hauteur/largeur/pourGagner

@@ -16,6 +16,7 @@ public class MParametres extends Modele {
     // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
     public static MParametres instance = new MParametres();
 
+
     static{
         Log.d("Atelier04", MParametres.class.getSimpleName() + "::static");
 

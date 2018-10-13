@@ -18,17 +18,20 @@ public class ControleurObservation {
     }
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
+
+        observations.put(MParametres.instance, listenerObservateur);
+        /*
+         * Appeler le listener une première fois
+         */
+
+
         }
 
-        /*
-        * Enregistrer le listener dans le Map Observations
-        * Appeler le listener une première fois
-        *
-        * Pour l'instant, utiliser le nom pour décider quel modèle utiliser
-        *       - MParametres.instance ou Controleur.partie
-        *
-        * Bonus: Pourquoi le modèleest identifié par son nom ? (et pas son objet comme dans le Map?)
-        *
-         */
+    public static Map<Modele, ListenerObservateur> getObservations() {
+
+
+    }
+
+
     }
 }

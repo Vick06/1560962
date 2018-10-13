@@ -3,6 +3,9 @@ package ca.cours5b5.vickielanglois.vues;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ControleurObservation;
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 
@@ -31,6 +34,14 @@ public class VPartie extends Vue{
 
     }
     private void observerPartie(){
+
+        ControleurObservation.observerModele(MParametres.class.getSimpleName(),
+                new ListenerObservateur() {
+                    @Override
+                    public void reagirChangementAuModele(Modele modele) {
+                        afficherParametres((MParametres) modele);
+                    }
+                });
         /*
         Appeler observer pour obtenir le modèle
         Une fois le modèle obtenu, créer la grille d'affichage
