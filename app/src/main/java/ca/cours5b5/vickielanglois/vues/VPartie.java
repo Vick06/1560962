@@ -2,10 +2,12 @@ package ca.cours5b5.vickielanglois.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
+import android.util.Log;
+import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ControleurObservation;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
+import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 
@@ -28,31 +30,38 @@ public class VPartie extends Vue{
     @Override
     protected  void onFinishInflate(){
         super.onFinishInflate();
+        Log.d("Atelier06", "VGrille.onFinishInflate");
+
+        grille = findViewById(R.id.gridLayout);
+        observerPartie();
+
     }
 
-    private void initialiser(){
-
-    }
     private void observerPartie(){
 
-        ControleurObservation.observerModele(MParametres.class.getSimpleName(),
+        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        afficherParametres((MParametres) modele);
+                        initialiserGrille(getPartie(modele));
                     }
                 });
-        /*
-        Appeler observer pour obtenir le modèle
-        Une fois le modèle obtenu, créer la grille d'affichage
-         */
+
     }
 
     private MPartie getPartie(Modele modele){
+
+             MPartie mPartie = (MPartie) modele;
+
+        return mPartie;
+
 
     }
 
     private void initialiserGrille(MPartie partie){
 
+        MParametresPartie parametres = partie.getParametres();
+
+        grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
     }
 }

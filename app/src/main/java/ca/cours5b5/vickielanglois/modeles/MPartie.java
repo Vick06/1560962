@@ -5,16 +5,20 @@ import java.util.Map;
 import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
-public class MPartie {
+public class MPartie extends Modele{
 
     @AttributSerialisable
-    public MParametres parametres;
+    public MParametresPartie parametres;
     private final String _parametres = "parametres";
 
     public MPartie(MParametresPartie parametres){
 
+        this.parametres = parametres;
+
     }
     public MParametresPartie getParametres(){
+
+        return parametres;
 
     }
 
@@ -23,6 +27,7 @@ public class MPartie {
         /*
         Inutilisé pour l'instant
          */
+
     }
 
     @Override
@@ -30,6 +35,7 @@ public class MPartie {
         /*
         Inutilisé pour l'instant
          */
+        return null;
     }
 
 }
