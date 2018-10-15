@@ -27,74 +27,13 @@ public class MParametres extends Modele {
     public MParametresPartie parametresPartie;
     private String _parametresPartie = "parametresPartie";
 
-    private List<Integer> ChoixHauteur(){
-        return choixHauteur;
-    }
-    private List<Integer> ChoixLargeur(){
-        return choixLargeur;
-    }
-    private List<Integer> ChoixPourGagner(){
-        return choixPourGagner;
-    }
-
-
-    @AttributSerialisable
-    public Integer hauteur;
-    private final String __hauteur = "hauteur";
-
-    @AttributSerialisable
-    public Integer largeur;
-    private final String __largeur = "largeur";
-
-    @AttributSerialisable
-    public Integer pourGagner;
-    private final String __pourGagner = "pourGagner";
-
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
 
     public MParametres(){
-        super();
-
-        public List<Integer> getChoixHauteur(){
-
-        }
-        public List<Integer> getChoixLargeur(){
-
-        }
-        public List<Integer> getChoixPourGagner(){
-
-        }
-        public MParametresPartie getParametresPartie(){
-
-        }
-        private void genererListesDeChoix(){
-
-        }
-        private void genererListeChoixHauteur(){
-
-        }
-        private void genererListeChoixLargeur(){
-
-        }
-        private void genererListeChoixPourGagner(){
-
-        }
-        @Override
-        public void aPartirObjetJson(Map<String, Object> objetJson) throw ErreurSerialisation{
-
-        }
-        @Override
-        public Map<String, Object> enObjetJson() throw ErreurSerialisation{
-
-        }
-
-        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
-        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
-        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
-
-        genererListesDeChoix();
+       genererListesDeChoix();
+       parametresPartie = new MParametresPartie();
     }
 
     public List<Integer> getChoixHauteur(){
@@ -109,28 +48,8 @@ public class MParametres extends Modele {
         return choixPourGagner;
     }
 
-    public Integer getHauteur() {
-        return hauteur;
-    }
-
-    public Integer getLargeur() {
-        return largeur;
-    }
-
-    public Integer getPourGagner() {
-        return pourGagner;
-    }
-
-    public void setHauteur(int hauteur) {
-        this.hauteur = hauteur;
-    }
-
-    public void setLargeur(int largeur) {
-        this.largeur = largeur;
-    }
-
-    public void setPourGagner(int pourGagner) {
-        this.pourGagner = pourGagner;
+    public MParametresPartie getParametresPartie() {
+        return parametresPartie;
     }
 
     private void genererListesDeChoix(){
@@ -166,42 +85,20 @@ public class MParametres extends Modele {
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
             String chaineValeur = (String) entry.getValue();
+            Object valeur = entry.getValue();
 
-            switch (entry.getKey()){
-
-                case __hauteur:
-
-                    hauteur = Integer.valueOf(chaineValeur);
-                    break;
-
-                case __largeur:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-
-                case __pourGagner:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-                default:
-
-                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
+            if(chaineValeur == _parametresPartie){
+                parametresPartie.aPartirObjetJson((Map<String, Object>) valeur);
             }
         }
     }
-
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(__hauteur, hauteur.toString());
-        objetJson.put(__largeur, largeur.toString());
-        objetJson.put(__pourGagner, pourGagner.toString());
+        objetJson.put(this._parametresPartie, this.parametresPartie);
 
         return objetJson;
-
     }
 }

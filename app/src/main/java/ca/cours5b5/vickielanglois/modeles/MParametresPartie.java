@@ -1,12 +1,15 @@
 package ca.cours5b5.vickielanglois.modeles;
 
+import android.view.Display;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
+import ca.cours5b5.vickielanglois.global.GConstantes;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
-public class MParametresPartie {
+public class MParametresPartie extends Modele{
 
     @AttributSerialisable
     public Integer hauteur;
@@ -22,37 +25,31 @@ public class MParametresPartie {
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
 
+        MParametresPartie mParametresPartie = mParametres.getParametresPartie().cloner();
 
-
-        /*
-        Retourner une instance de MParametresPartie avec
-        exactement les mêmes hauteur/largeur/pourGagner
-        que le MParametres reçu en argument
-         */
+        return mParametresPartie;
     }
 
     public MParametresPartie cloner(){
 
-
-
-        /*
-        Retourne une instance de MParametersPartie avec
-        exactement les mêmes hauteur/largeur/pourGagner
-         */
+    MParametresPartie mParametresPartie = this;
+    return mParametresPartie;
     }
 
     public MParametresPartie(){
+
+        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
+        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
+        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
 
     }
 
     public Integer getHauteur(){
         return hauteur;
     }
-
     public Integer getLargeur(){
         return largeur;
     }
-
     public Integer getPourGagner(){
         return pourGagner;
     }
@@ -60,11 +57,9 @@ public class MParametresPartie {
     public void setHauteur(int hauteur){
         this.hauteur = hauteur;
     }
-
     public void setLargeur(int largeur){
         this.largeur = largeur;
     }
-
     public void setPourGagner(int pourGagner){
         this.pourGagner = pourGagner;
     }
@@ -72,19 +67,29 @@ public class MParametresPartie {
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
 
+        for(Map.Entry<String, Object> entry: objetJson.entrySet()){
+            String cle = entry.getKey();
+            Object  valeur = entry.getValue();
+
+            if(cle == this._hauteur){
+                this.setHauteur((Integer)valeur);
+            } else if(cle == this._largeur){
+                this.setLargeur((Integer)valeur);
+            }else if(cle == this._pourGagner){
+                this.setPourGagner((Integer)valeur);
+            }
+        }
     }
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation{
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(_hauteur, hauteur.toString());
-        objetJson.put(_largeur, largeur.toString());
-        objetJson.put(_pourGagner, pourGagner.toString());
+        objetJson.put(this._hauteur, this.hauteur);
+        objetJson.put(this._largeur, this.largeur);
+        objetJson.put(this._pourGagner, this.pourGagner);
 
         return objetJson;
     }
-
-
 
 }

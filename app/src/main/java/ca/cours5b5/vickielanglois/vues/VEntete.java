@@ -21,9 +21,9 @@ public class VEntete extends AppCompatButton{
     private int colonne;
 
     public VEntete(Context context, int colonne){
-        /*
-        Afficher le numéro de colonne!
-         */
+       super(context);
+
+       this.setText(colonne + "");
 
     }
 }

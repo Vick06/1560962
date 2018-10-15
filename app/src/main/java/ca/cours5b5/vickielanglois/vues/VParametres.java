@@ -13,6 +13,7 @@ import java.util.List;
 
 import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
+import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 
 
 public class VParametres extends Vue {
@@ -22,7 +23,7 @@ public class VParametres extends Vue {
         Log.d("Atelier04", VParametres.class.getSimpleName() + "::static");
 
     }
-
+    private MParametresPartie mParametreP;
     private Spinner spinnerHauteur;
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
@@ -42,6 +43,8 @@ public class VParametres extends Vue {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+
+       mParametreP = MParametres.instance.getParametresPartie();
 
         initialiser();
         afficherLesChoix();
@@ -76,7 +79,7 @@ public class VParametres extends Vue {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int leChoix = (int) parent.getAdapter().getItem(position);
 
-                MParametres.instance.setHauteur(leChoix);
+                mParametreP.setHauteur(leChoix);
 
             }
 
@@ -93,7 +96,7 @@ public class VParametres extends Vue {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int leChoix = (int) parent.getAdapter().getItem(position);
 
-                MParametres.instance.setLargeur(leChoix);
+                mParametreP.setLargeur(leChoix);
 
             }
 
@@ -110,7 +113,7 @@ public class VParametres extends Vue {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int leChoix = (int) parent.getAdapter().getItem(position);
 
-                MParametres.instance.setPourGagner(leChoix);
+                mParametreP.setPourGagner(leChoix);
 
             }
 
@@ -130,19 +133,19 @@ public class VParametres extends Vue {
     private void afficherChoixHauteur(){
         mettreAJourSpinner(spinnerHauteur,
                 MParametres.instance.getChoixHauteur(),
-                MParametres.instance.getHauteur());
+                mParametreP.getHauteur());
     }
 
     private void afficherChoixLargeur(){
         mettreAJourSpinner(spinnerLargeur,
                 MParametres.instance.getChoixLargeur(),
-                MParametres.instance.getLargeur());
+                mParametreP.getLargeur());
     }
 
     private void afficherChoixPourGagner(){
         mettreAJourSpinner(spinnerPourGagner,
                 MParametres.instance.getChoixPourGagner(),
-                MParametres.instance.getPourGagner());
+                mParametreP.getPourGagner());
     }
 
     private void mettreAJourSpinner(Spinner spinner, List<Integer> choix, int selectionCourante){

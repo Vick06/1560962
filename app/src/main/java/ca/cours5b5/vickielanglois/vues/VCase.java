@@ -8,6 +8,7 @@ import android.widget.GridLayout;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 
 public class VCase extends AppCompatButton {
+
     public VCase(Context context) {
         super(context);
     }
@@ -23,7 +24,7 @@ public class VCase extends AppCompatButton {
     public VCase(Context context, int rangee, int colonne){
         super(context);
 
-        setText(rangee + ',' + colonne);
+        this.setText(rangee + "," + colonne);
     }
 
 }
