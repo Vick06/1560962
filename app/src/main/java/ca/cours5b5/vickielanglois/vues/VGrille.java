@@ -29,7 +29,6 @@ public class VGrille extends GridLayout{
     }
 
     private int nombreRangees;
-    private VCase[][] tableau;
 
 
     private class Colonne extends ArrayList<VCase>{}
@@ -128,20 +127,9 @@ public class VGrille extends GridLayout{
 
     }
 
-    private void initialiserTableauDeCases(int hauteur, int largeur){
-
-        for(int i = 0; i < hauteur; i++){
-            for(int j = 0; j < largeur; j++){
-
-                tableau[i][j] = new VCase(getContext(), i, j); //A verifier
-            }
-
-        }
-    }
-
     private void demanderActionEntete(){
 
-
+      //  GCommande.JOUER_COUP_ICI = GCommande.JOUER_COUP_ICI.values()[];
 
 
 
@@ -153,9 +141,9 @@ public class VGrille extends GridLayout{
          */
     }
 
-    private void ajouterEnTeste(int largeur){
+    private void ajouterEnTete(int largeur){
 
-        for(int i = 0; i < largeur; i++){
+     /*   for(int i = 0; i < largeur; i++){
             installerListenerEntete(largeur, i);
         }
         /*

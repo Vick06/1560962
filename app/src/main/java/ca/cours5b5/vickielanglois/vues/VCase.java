@@ -29,6 +29,8 @@ public class VCase extends AppCompatButton {
     }
 
     public void afficherJeton(GCouleur jeton){
+
+
         /*
          * Changer la couleur de fond selonle jeton a afficher
          */

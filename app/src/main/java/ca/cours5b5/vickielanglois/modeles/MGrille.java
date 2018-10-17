@@ -14,13 +14,18 @@ public class MGrille extends Modele{
 
     public MGrille(int largeur){
 
+
     }
 
     private void initialiserColonnes(int largeur){
 
+
+
     }
 
     public List<MColonne> getColonnes(){
+
+
 
         return null;
     }
@@ -29,14 +34,14 @@ public class MGrille extends Modele{
 
     }
 
-    //@Override
+    @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
         /*
          * Inutilise
          */
     }
 
-    //@Override
+    @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation{
         /*
          * Inutilise

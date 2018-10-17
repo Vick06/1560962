@@ -1,5 +1,6 @@
 package ca.cours5b5.vickielanglois.controleurs;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,11 @@ public class ControleurAction {
 
     static{
 
+
+            action = new HashMap<>();
+          //  action.put(GCommande.JOUER_COUP_ICI, Action);
+        }
+
         /*TRUC: initialiser le Map actions comme suit:
          * - pour chaque GCommande
          *      - inserer une action
@@ -22,9 +28,11 @@ public class ControleurAction {
          * GCommande est dans le Map... elle y sont toutes!)
          *
          */
-    }
 
     public static Action demanderAction(GCommande commande){
+
+
+
         /*
          * Retourner l'action au demandeur
          */
@@ -34,18 +42,25 @@ public class ControleurAction {
 
     public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
 
+
+        executerActionsExecutable();
+
+
         /*
          * Enregistrer le fournisseur
          * Appeler la methode qui execute chaque
-         *  action de la fil d 'attente
+         *  action de la file d 'attente
          */
     }
 
     static void executerDesQuePossible(Action action){
+
+
+
         /*
          *Mettre l'action en file d'attente
          * Appeler la methode qui execute chaque
-         *  action de la fil d'attente
+         *  action de la file d'attente
          */
     }
 
@@ -74,6 +89,9 @@ public class ControleurAction {
     }
 
     private static synchronized void executerMaintenant(Action action){
+
+
+
         /*
          *Appeler le listenerFournisseur de l'action
          *
