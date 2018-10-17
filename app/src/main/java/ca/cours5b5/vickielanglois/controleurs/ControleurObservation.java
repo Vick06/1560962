@@ -36,7 +36,13 @@ public class ControleurObservation {
 
     public static void lancerObservation(Modele modele) {
 
+        /*
+         *verifier si le listener existe pour ce modele
+         * Appeler le listener
+         */
+
         ListenerObservateur listenerObservateur = observations.get(modele);
         listenerObservateur.reagirNouveauModele(modele);
     }
+
 }

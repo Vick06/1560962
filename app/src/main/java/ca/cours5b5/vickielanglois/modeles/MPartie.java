@@ -2,14 +2,18 @@ package ca.cours5b5.vickielanglois.modeles;
 
 import java.util.Map;
 
+import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
+import ca.cours5b5.vickielanglois.global.GCouleur;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
-public class MPartie extends Modele{
+public class MPartie extends Modele implements Fournisseur{
 
     @AttributSerialisable
     public MParametresPartie parametres;
     private final String _parametres = "parametres";
+    private MGrille grille;
+    private GCouleur couleurCourante;
 
     public MPartie(MParametresPartie parametres){
 
@@ -38,4 +42,25 @@ public class MPartie extends Modele{
         return null;
     }
 
+    public MGrille getGrille() {
+        return grille;
+    }
+
+    private void initialiserCouleurCourante(){
+
+    }
+
+    private void fournirActionPlacerJeton(){
+            /*
+             * Appeler fournirAction
+             */
+    }
+
+    protected void jouerCoup(int colonne){
+
+    }
+
+    private void prochaineCouleurCourante(){
+
+    }
 }

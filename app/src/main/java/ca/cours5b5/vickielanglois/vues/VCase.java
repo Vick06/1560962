@@ -5,6 +5,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
 
+import ca.cours5b5.vickielanglois.global.GCouleur;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 
 public class VCase extends AppCompatButton {
@@ -25,6 +26,12 @@ public class VCase extends AppCompatButton {
         super(context);
 
         this.setText(rangee + "," + colonne);
+    }
+
+    public void afficherJeton(GCouleur jeton){
+        /*
+         * Changer la couleur de fond selonle jeton a afficher
+         */
     }
 
 }

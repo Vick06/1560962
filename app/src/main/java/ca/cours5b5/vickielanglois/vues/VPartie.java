@@ -38,6 +38,11 @@ public class VPartie extends Vue{
 
     private void observerPartie(){
 
+        /*
+         * Dans reagirChangementAuModele
+         *  on veut rafraichir la grille
+         */
+
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
@@ -62,5 +67,9 @@ public class VPartie extends Vue{
         MParametresPartie parametres = partie.getParametres();
 
         grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
+    }
+
+    public void miseAJourGrille(MPartie partie){
+
     }
 }

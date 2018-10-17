@@ -8,6 +8,10 @@ import android.widget.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.vickielanglois.controleurs.Action;
+import ca.cours5b5.vickielanglois.global.GCommande;
+import ca.cours5b5.vickielanglois.global.GCouleur;
+import ca.cours5b5.vickielanglois.modeles.MGrille;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
 
@@ -25,6 +29,7 @@ public class VGrille extends GridLayout{
     }
 
     private int nombreRangees;
+    private VCase[][] tableau;
 
 
     private class Colonne extends ArrayList<VCase>{}
@@ -74,8 +79,8 @@ public class VGrille extends GridLayout{
 
     private LayoutParams getMiseEnPageEntete(int colonne){
 
-        Spec specRangee = GridLayout.spec(0, 1.0f);
-        Spec specColonne = GridLayout.spec(colonne, 1.0f);
+        Spec specRangee = GridLayout.spec(0, 3.0f);
+        Spec specColonne = GridLayout.spec(colonne, 2.0f);
 
         LayoutParams mesParams = new LayoutParams(specRangee, specColonne);
 
@@ -120,6 +125,54 @@ public class VGrille extends GridLayout{
         mesParams.leftMargin = 5;
 
         return mesParams;
+
+    }
+
+    private void initialiserTableauDeCases(int hauteur, int largeur){
+
+        for(int i = 0; i < hauteur; i++){
+            for(int j = 0; j < largeur; j++){
+
+                tableau[i][j] = new VCase(getContext(), i, j); //A verifier
+            }
+
+        }
+    }
+
+    private void demanderActionEntete(){
+
+
+
+
+
+        /*
+         * On demande l'action JOUER_COUP_ICI
+         * L'action est a executer quand l'usager
+         *  clique sur un en-tete
+         *
+         */
+    }
+
+    private void ajouterEnTeste(int largeur){
+
+        for(int i = 0; i < largeur; i++){
+            installerListenerEntete(largeur, i);
+        }
+        /*
+         *Pour chaque en-tete, on veut
+         *  installer le Listener
+         */
+    }
+
+    private void installerListenerEntete(VEntete entete, final int colonne){
+
+    }
+
+    void afficherJetons(MGrille grille){
+
+    }
+
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
 
     }
 }
