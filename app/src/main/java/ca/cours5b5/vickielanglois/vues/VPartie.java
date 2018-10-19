@@ -29,7 +29,7 @@ public class VPartie extends Vue{
     @Override
     protected  void onFinishInflate(){
         super.onFinishInflate();
-        Log.d("Atelier06", "VGrille.onFinishInflate");
+        Log.d("Atelier06", "VPArtie :: onFinishInflate");
 
         grille = findViewById(R.id.gridLayout);
         observerPartie();
@@ -38,31 +38,28 @@ public class VPartie extends Vue{
 
     private void observerPartie(){
 
-        /*
-         * Dans reagirChangementAuModele
-         *  on veut rafraichir la grille
-         */
+        Log.d("Atelier 07", "VPartie :: observerPartie");
 
-        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
-                new ListenerObservateur() {
-                    @Override
-                    public void reagirChangementAuModele(Modele modele) {
-                        initialiserGrille(getPartie(modele));
-                    }
-                });
+        ControleurObservation.observerModele(MPartie.class.getSimpleName(), new ListenerObservateur() {
+            @Override
+            public void reagirChangementAuModele(Modele modele) {
+                Log.d("Ateleir 07", "VPartie.reagirChangementAuModele");
+
+                initialiserGrille(getPartie(modele));
+                miseAJourGrille(getPartie(modele));
+            }
+        });
 
     }
 
     private MPartie getPartie(Modele modele){
-
-             MPartie mPartie = (MPartie) modele;
-
-        return mPartie;
-
+        return (MPartie) modele;
 
     }
 
     private void initialiserGrille(MPartie partie){
+
+        Log.d("Atelier 07", "VPartie.initialiserGrille");
 
         MParametresPartie parametres = partie.getParametres();
 
@@ -71,5 +68,8 @@ public class VPartie extends Vue{
 
     public void miseAJourGrille(MPartie partie){
 
+        Log.d("Atelier 07", "VPartie.miseAJourGrille");
+
+        grille.afficherJetons(partie.getGrille());
     }
 }

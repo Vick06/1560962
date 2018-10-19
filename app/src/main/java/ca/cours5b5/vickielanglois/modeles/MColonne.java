@@ -1,5 +1,6 @@
 package ca.cours5b5.vickielanglois.modeles;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,14 +13,18 @@ public class MColonne extends Modele{
 
     public MColonne(){
 
+        jetons = new ArrayList<>();
+
     }
 
     public List<GCouleur> getJetons(){
 
-        return null;
+        return jetons;
     }
 
     public void placerJeton(GCouleur couleur){
+
+        this.jetons.add(couleur);
 
     }
 

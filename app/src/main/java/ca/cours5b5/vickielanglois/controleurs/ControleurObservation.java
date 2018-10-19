@@ -1,5 +1,7 @@
 package ca.cours5b5.vickielanglois.controleurs;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,21 +22,22 @@ public class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
 
+        partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.instance));
         Modele modele = null;
 
         if(nomModele.equals("MPartie")) {
-            partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.instance));
-            observations.put(ControleurObservation.partie, listenerObservateur);
             modele = ControleurObservation.partie;
         }else if(nomModele.equals("MParametres")) {
             modele = MParametres.instance;
-            observations.put(modele, listenerObservateur);
-        }
 
+        }
+        observations.put(modele, listenerObservateur);
         lancerObservation(modele);
     }
 
     public static void lancerObservation(Modele modele) {
+
+            Log.d("Atelier 07", "controleurObservation.lancerObservation");
 
         /*
          *verifier si le listener existe pour ce modele
@@ -42,7 +45,11 @@ public class ControleurObservation {
          */
 
         ListenerObservateur listenerObservateur = observations.get(modele);
-        listenerObservateur.reagirNouveauModele(modele);
+
+        if(listenerObservateur != null) {
+
+            listenerObservateur.reagirNouveauModele(modele);
+        }
     }
 
 }

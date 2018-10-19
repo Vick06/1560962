@@ -1,6 +1,7 @@
 package ca.cours5b5.vickielanglois.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
@@ -30,10 +31,12 @@ public class VCase extends AppCompatButton {
 
     public void afficherJeton(GCouleur jeton){
 
+        if(jeton.equals(GCouleur.JAUNE)){
+            this.setBackgroundColor(Color.YELLOW);
+        }else{
+            this.setBackgroundColor(Color.RED);
+        }
 
-        /*
-         * Changer la couleur de fond selonle jeton a afficher
-         */
     }
 
 }
