@@ -7,7 +7,7 @@
     tools:context="ca.cours5b5.vickielanglois.activites.AMenuPrincipal">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bouton_parametres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -17,20 +17,20 @@
         android:text="@string/parametres"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintTop_toBottomOf="@+id/bouton_partie" />
 
     <Button
-        android:id="@+id/button_jouer"
+        android:id="@+id/bouton_partie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="172dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Jouer"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="8dp"
+        android:text="@string/jouer"
+        app:layout_constraintBottom_toTopOf="@+id/bouton_parametres"
+        app:layout_constraintEnd_toEndOf="@+id/bouton_parametres"
+        app:layout_constraintStart_toStartOf="@+id/bouton_parametres"
+        app:layout_constraintTop_toTopOf="parent" />
 </ca.cours5b5.vickielanglois.vues.VMenuPrincipal>

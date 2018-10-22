@@ -1,42 +1,66 @@
 package ca.cours5b5.vickielanglois.vues;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.GridLayout;
 
+import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.global.GCouleur;
-import ca.cours5b5.vickielanglois.modeles.MParametres;
+
 
 public class VCase extends AppCompatButton {
 
     public VCase(Context context) {
         super(context);
+        initialiser();
     }
 
     public VCase(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initialiser();
     }
 
     public VCase(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initialiser();
     }
 
-    public VCase(Context context, int rangee, int colonne){
+
+    public VCase(Context context, int rangee, int colonne) {
         super(context);
 
-        this.setText(rangee + "," + colonne);
+        setText(""+rangee+","+colonne);
+
+        initialiser();
+
     }
 
-    public void afficherJeton(GCouleur jeton){
+    private void initialiser() {
 
-        if(jeton.equals(GCouleur.JAUNE)){
-            this.setBackgroundColor(Color.YELLOW);
-        }else{
-            this.setBackgroundColor(Color.RED);
+        changerCouleurDeFond(R.color.VIDE);
+
+    }
+
+    private void changerCouleurDeFond(int idCouleur) {
+
+        setBackgroundColor(getResources().getColor(idCouleur, null));
+
+    }
+
+    public void afficherJeton(GCouleur jeton) {
+
+        switch (jeton){
+
+            case ROUGE:
+
+                changerCouleurDeFond(R.color.ROUGE);
+                break;
+
+            case JAUNE:
+
+                changerCouleurDeFond(R.color.JAUNE);
+                break;
         }
-
     }
 
 }

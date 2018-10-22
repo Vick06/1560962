@@ -7,7 +7,7 @@ import java.util.Map;
 import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
 import ca.cours5b5.vickielanglois.global.GCouleur;
 
-public class MColonne extends Modele{
+public class MColonne extends Modele {
 
     private List<GCouleur> jetons;
 
@@ -17,30 +17,32 @@ public class MColonne extends Modele{
 
     }
 
-    public List<GCouleur> getJetons(){
-
+    public List<GCouleur> getJetons() {
         return jetons;
     }
 
-    public void placerJeton(GCouleur couleur){
+    public void placerJeton(GCouleur couleur) {
 
-        this.jetons.add(couleur);
+        jetons.add(couleur);
 
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
-        /*
-         * Inutilise
-         */
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
+
+        throw new UnsupportedOperationException();
+
     }
 
     @Override
-    public Map<String, Object> enObjetJson() throws ErreurSerialisation{
-        /*
-         * Inutilise
-         */
-        return null;
+    public Map<String, Object> enObjetJson() throws ErreurSerialisation {
+
+        throw new UnsupportedOperationException();
+
+    }
+
+    public int nombreDeJetons() {
+        return jetons.size();
     }
 
 }
