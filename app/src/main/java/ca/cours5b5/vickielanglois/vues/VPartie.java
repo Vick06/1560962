@@ -33,6 +33,8 @@ public class VPartie extends Vue {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        Log.d("atelier", "OnFinishInflate :: VPartie");
+
         initialiser();
 
         observerPartie();

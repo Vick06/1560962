@@ -2,6 +2,7 @@ package ca.cours5b5.vickielanglois.activites;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import ca.cours5b5.vickielanglois.controleurs.ControleurModeles;
 import ca.cours5b5.vickielanglois.donnees.Disque;
@@ -14,6 +15,8 @@ public abstract class Activite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d("atelier", "OnCreate.savedInstanceState :: Activite");
 
         initialiserControleurModeles(savedInstanceState);
         initialiserApplication();
@@ -37,6 +40,7 @@ public abstract class Activite extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        Log.d("atelier", "OnSaveInstance :: Activite");
 
         ControleurModeles.sauvegarderModeleDansCetteSource(MParametres.class.getSimpleName(),
                 new SauvegardeTemporaire(outState));

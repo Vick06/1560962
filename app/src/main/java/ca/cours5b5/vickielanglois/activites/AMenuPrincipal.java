@@ -2,6 +2,7 @@ package ca.cours5b5.vickielanglois.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
@@ -14,6 +15,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("atelier", "OnCreate.savedInstace state :: AMenuPrincipal");
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();

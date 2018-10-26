@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "134538238395",
+    "firebase_url": "https://androidstudiovickielanglois.firebaseio.com",
+    "project_id": "androidstudiovickielanglois",
+    "storage_bucket": "androidstudiovickielanglois.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134538238395:android:92e274d4276cec97",
+        "android_client_info": {
+          "package_name": "ca.cours5b5.vickielanglois"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134538238395-v90fb1o8eadtqutdankkmdj60cienumc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.cours5b5.vickielanglois",
+            "certificate_hash": "fda41a8f1ad75078b3f53d57e20b02467cf9a228"
+          }
+        },
+        {
+          "client_id": "134538238395-cmv9aq3qrc9ni12toa9t9v8n7kg3t40e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV_5XVruzRHQg_7areaEimiGBtrBwUmuk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134538238395-cmv9aq3qrc9ni12toa9t9v8n7kg3t40e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

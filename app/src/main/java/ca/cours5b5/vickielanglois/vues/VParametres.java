@@ -48,6 +48,8 @@ public class VParametres extends Vue {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        Log.d("atelier", "onFinishInflate :: VParametres");
+
         initialiser();
 
         demanderActions();

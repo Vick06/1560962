@@ -2,6 +2,7 @@ package ca.cours5b5.vickielanglois.activites;
 
 
 import android.os.Bundle;
+import android.util.Log;
 
 import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.ControleurModeles;
@@ -15,6 +16,8 @@ public class APartie extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d("atelier", "OnCreate.savedInstanceState :: APartie");
+
         setContentView(R.layout.activity_partie);
 
     }
@@ -23,6 +26,8 @@ public class APartie extends Activite {
     protected void onPause() {
         super.onPause();
 
+        Log.d("atelier", "OnPause :: APartie");
+
         ControleurModeles.sauvegarderModele(MPartie.class.getSimpleName());
 
     }
@@ -30,6 +35,8 @@ public class APartie extends Activite {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
+        Log.d("atelier", "OnSaveInstanceState :: APartie");
 
         ControleurModeles.sauvegarderModeleDansCetteSource(MPartie.class.getSimpleName(),
                 new SauvegardeTemporaire(outState));
