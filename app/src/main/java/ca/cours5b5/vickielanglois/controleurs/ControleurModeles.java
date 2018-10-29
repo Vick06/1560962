@@ -1,5 +1,9 @@
 package ca.cours5b5.vickielanglois.controleurs;
 
+import android.content.Intent;
+
+import com.firebase.ui.auth.AuthUI;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.Map;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.donnees.SourceDeDonnees;
 import ca.cours5b5.vickielanglois.exceptions.ErreurModele;
+import ca.cours5b5.vickielanglois.global.GConstantes;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
@@ -137,6 +142,8 @@ public final class ControleurModeles {
     }
 
     private static String getCheminSauvegarde(String nomModele){
+
+
         return null;
     }
 
