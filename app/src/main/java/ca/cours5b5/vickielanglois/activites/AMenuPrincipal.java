@@ -83,24 +83,30 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void fournirActionConnection(){
 
-        List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
+        ControleurAction.fournirAction(this, GCommande.CONNEXION, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
 
-        fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
-        fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
-        fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
+                List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
+                fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
+                fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
+                fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
 
-        Intent intentionConnexion = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(fournisseursDeConnexion)
-                .build();
+                Intent intentionConnexion = AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(fournisseursDeConnexion)
+                        .build();
 
-        this.startActivityForResult(intentionConnexion, GConstantes.CONNEXION);
+                //WHYYYYY RED
+                this.startActivityForResult(intentionConnexion, GConstantes.CODE_DE_CONNEXION);
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 
-        if(requestCode == GConstantes.CONNEXION){
+        if(requestCode == GConstantes.CODE_DE_CONNEXION){
             if(resultCode == RESULT_OK){
                 startActivity(SignedInActivity.createIntent(this, response));
                 finish();
