@@ -10,6 +10,7 @@ import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.Action;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
 import ca.cours5b5.vickielanglois.global.GCommande;
+import ca.cours5b5.vickielanglois.usagers.UsagerCourant;
 
 
 public class VMenuPrincipal extends Vue {
@@ -22,6 +23,7 @@ public class VMenuPrincipal extends Vue {
 
     private Button boutonConnexion;
     private Action actionConnexion;
+    private Action actionDeconnexion;
 
     public VMenuPrincipal(Context context) {
         super(context);
@@ -47,6 +49,8 @@ public class VMenuPrincipal extends Vue {
 
         installerListeners();
 
+        initialiserConnection();
+
     }
 
 
@@ -65,6 +69,10 @@ public class VMenuPrincipal extends Vue {
         actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
 
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
+
+        actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
+
+        actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
     }
 
@@ -102,12 +110,33 @@ public class VMenuPrincipal extends Vue {
 
     private void installerListenerConnexion(){
 
-        boutonPartie.setOnClickListener(new OnClickListener() {
+        boutonConnexion.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 actionConnexion.executerDesQuePossible();
             }
         });
+    }
+
+    private void installerListenerDeconnexion(){
+
+        boutonConnexion.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionDeconnexion.executerDesQuePossible();
+            }
+        });
+
+    }
+
+    public void initialiserConnection(){
+
+        boutonConnexion.setOnClickListener(null);
+        if(UsagerCourant.userConnected()){
+            installerListenerDeconnexion();
+        } else {
+            installerListenerConnexion();
+        }
     }
 
 }

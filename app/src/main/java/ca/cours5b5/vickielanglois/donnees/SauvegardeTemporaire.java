@@ -43,4 +43,8 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
         }
     }
 
+    private String getCle(String cheminSauvegarde){
+        return getNomModele(cheminSauvegarde);
+    }
+
 }

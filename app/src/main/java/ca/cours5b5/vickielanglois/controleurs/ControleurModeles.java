@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.firebase.ui.auth.AuthUI;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 import ca.cours5b5.vickielanglois.donnees.Disque;
+import ca.cours5b5.vickielanglois.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -143,8 +145,8 @@ public final class ControleurModeles {
 
     private static String getCheminSauvegarde(String nomModele){
 
+        return nomModele + File.separator + UsagerCourant.getId();
 
-        return null;
     }
 
 }

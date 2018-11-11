@@ -23,5 +23,6 @@ public class Serveur extends SourceDeDonnees {
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeud.setValue(objetJson);
     }
 }
