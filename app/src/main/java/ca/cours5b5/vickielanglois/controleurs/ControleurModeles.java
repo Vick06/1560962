@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.vickielanglois.donnees.SourceDeDonnees;
 import ca.cours5b5.vickielanglois.exceptions.ErreurModele;
 import ca.cours5b5.vickielanglois.global.GConstantes;
@@ -146,6 +147,34 @@ public final class ControleurModeles {
     private static String getCheminSauvegarde(String nomModele){
 
         return nomModele + File.separator + UsagerCourant.getId();
+
+    }
+
+    private static void creerModeleEtChargerDonnees(final String nomModele, final ListenerGetModele listenerGetModele){
+
+    }
+
+    private static void chargerDonnees(Modele modele, String nomModele, ListenerGetModele listenerGetModele){
+
+    }
+
+    private static void chargementViaSequence(Modele modele, String cheminDeSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
+
+    }
+
+    private static void chargementViaSourceCOuranteOuSuivante(final Modele modele, final String cheminDeSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){
+
+    }
+
+    private static void terminerChargementAvecDonnees(Map<String, Object> objetJson, Modele modele, ListenerGetModele listenerModele){
+
+    }
+
+    private static void terminerChargement(Modele modele, ListenerGetModele listenerGetModele){
+
+    }
+
+    private static void chargementViaSourceSuivante(Modele modele, String cheminDeSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
 
     }
 
