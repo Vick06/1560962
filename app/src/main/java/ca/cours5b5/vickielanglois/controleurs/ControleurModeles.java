@@ -12,6 +12,7 @@ import java.util.Map;
 
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerGetModele;
+import ca.cours5b5.vickielanglois.donnees.Serveur;
 import ca.cours5b5.vickielanglois.donnees.SourceDeDonnees;
 import ca.cours5b5.vickielanglois.exceptions.ErreurModele;
 import ca.cours5b5.vickielanglois.global.GConstantes;
@@ -38,6 +39,7 @@ public final class ControleurModeles {
 
         listeDeSauvegardes = new ArrayList<>();
         listeDeSauvegardes.add(Disque.getInstance());
+        listeDeSauvegardes.add(Serveur.getInstance());
 
     }
 
@@ -55,7 +57,7 @@ public final class ControleurModeles {
 
             Map<String, Object> objetJson = modele.enObjetJson();
 
-            sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+            sourceDeDonnees.sauvegarderModele(getCheminSauvegarde(nomModele), objetJson);
 
         }
     }
@@ -80,9 +82,10 @@ public final class ControleurModeles {
 
         modelesEnMemoire.put(nomModele, modele);
 
+        String cheminSauvegarde = getCheminSauvegarde(nomModele);
         for(SourceDeDonnees sourceDeDonnees : sequenceDeChargement){
 
-            Map<String, Object> objetJson = sourceDeDonnees.chargerModele(nomModele);
+            Map<String, Object> objetJson = sourceDeDonnees.chargerModele(cheminSauvegarde);
 
             if(objetJson != null){
 
@@ -110,17 +113,11 @@ public final class ControleurModeles {
     private static Modele creerModeleSelonNom(String nomModele) throws ErreurModele {
 
         if(nomModele.equals(MParametres.class.getSimpleName())){
-
             return new MParametres();
-
         }else if(nomModele.equals(MPartie.class.getSimpleName())){
-
             MParametres mParametres = (MParametres) getModele(MParametres.class.getSimpleName());
-
             return new MPartie(mParametres.getParametresPartie().cloner());
-
         }else{
-
             throw new ErreurModele("Modèle inconnu: " + nomModele);
 
         }
@@ -146,7 +143,14 @@ public final class ControleurModeles {
 
     private static String getCheminSauvegarde(String nomModele){
 
-        return nomModele + File.separator + UsagerCourant.getId();
+        String idUsager = UsagerCourant.getId();
+        String cheminSauvegarde = "";
+
+        if(idUsager != null && nomModele != null){
+            cheminSauvegarde = nomModele + "/" + idUsager;
+        }
+
+        return  cheminSauvegarde;
 
     }
 

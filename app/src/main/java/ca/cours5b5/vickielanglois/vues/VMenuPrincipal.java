@@ -44,15 +44,10 @@ public class VMenuPrincipal extends Vue {
         Log.d("atelier", "OnFinishInflate :: VMenuPrincipal");
 
         recupererControles();
-
         demanderActions();
-
         installerListeners();
 
-        initialiserConnection();
-
     }
-
 
     private void recupererControles() {
 
@@ -80,9 +75,7 @@ public class VMenuPrincipal extends Vue {
     private void installerListeners() {
 
         installerListenerParametres();
-
         installerListenerPartie();
-
         installerListenerConnexion();
     }
 
@@ -126,17 +119,5 @@ public class VMenuPrincipal extends Vue {
                 actionDeconnexion.executerDesQuePossible();
             }
         });
-
     }
-
-    public void initialiserConnection(){
-
-        boutonConnexion.setOnClickListener(null);
-        if(UsagerCourant.userConnected()){
-            installerListenerDeconnexion();
-        } else {
-            installerListenerConnexion();
-        }
-    }
-
 }

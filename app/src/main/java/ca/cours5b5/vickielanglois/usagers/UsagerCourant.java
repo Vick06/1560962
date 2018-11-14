@@ -13,11 +13,13 @@ public class UsagerCourant {
 
     public static String getId() {
 
-        String id = "0";
+        String id = null;
 
         if(userConnected()){
 
-            id = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            //id = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid());
         }
 
         return id;

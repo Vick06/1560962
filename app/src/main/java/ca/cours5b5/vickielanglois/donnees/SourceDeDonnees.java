@@ -13,6 +13,4 @@ public abstract class SourceDeDonnees {
     public String getNomModele(String cheminSauvegarde){
         return cheminSauvegarde.split(File.separator)[0];
     }
-
-    public abstract void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement);
 }

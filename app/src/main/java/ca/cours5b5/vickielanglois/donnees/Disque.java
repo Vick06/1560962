@@ -79,7 +79,6 @@ public final class Disque extends SourceDeDonnees {
         }
     }
 
-
     private File getFichier(String nomModele) {
 
         String nomFichier = getNomFichier(nomModele);

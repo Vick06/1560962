@@ -28,7 +28,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
-        fournirActionConnection();
+
 
     }
 
@@ -37,6 +37,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         fournirActionOuvrirMenuParametres();
 
         fournirActionDemarrerPartie();
+
+        fournirActionConnection();
     }
 
     private void fournirActionOuvrirMenuParametres() {
@@ -68,14 +70,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void transitionParametres(){
-
+        Log.d("atelier 11", "transitionPartie");
         Intent intentionParametres = new Intent(this, AParametres.class);
         startActivity(intentionParametres);
 
     }
 
     private void transitionPartie(){
-
+        Log.d("atelier 11", "transitionPartie");
         Intent intentionParametres = new Intent(this, APartie.class);
         startActivity(intentionParametres);
 
@@ -86,32 +88,38 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         ControleurAction.fournirAction(this, GCommande.CONNEXION, new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
+                Log.d("atelier 11", "fournirActionConnection");
+                transitionConnexion();
 
-                List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
-                fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
-                fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
-                fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
-
-                Intent intentionConnexion = AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(fournisseursDeConnexion)
-                        .build();
-
-                //WHYYYYY RED
-                this.startActivityForResult(intentionConnexion, GConstantes.CODE_DE_CONNEXION);
             }
         });
     }
 
+    private void transitionConnexion() { // #connection
+        Log.d("atelier 11", "transitionConnexion");
+        List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
+
+        Intent intentionConnexion = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(fournisseursDeConnexion)
+                .build();
+
+        this.startActivityForResult(intentionConnexion, GConstantes.CODE_DE_CONNEXION);
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-
+        Log.d("atelier 11", "onActivityResult");
         if(requestCode == GConstantes.CODE_DE_CONNEXION){
             if(resultCode == RESULT_OK){
-                startActivity(SignedInActivity.createIntent(this, response));
-                finish();
+                Log.d("atelier 11", "Connexion reussi");
+
             }else{
-                //A TROUVER
+                Log.d("atelier 11", "Connexion echouee");
             }
         }
     }
