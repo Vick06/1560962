@@ -154,6 +154,14 @@ public final class ControleurModeles {
 
     }
 
+    static void getModele(String nomModele, ListenerGetModele listenerGetModele){
+
+    }
+
+    private static void creerModeleSelonNom(String nomModele, final ListenerGetModele listenerGetModele) throws ErreurModele {
+
+    }
+
     private static void creerModeleEtChargerDonnees(final String nomModele, final ListenerGetModele listenerGetModele){
 
     }
