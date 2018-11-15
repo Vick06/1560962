@@ -7,6 +7,7 @@ import android.util.Log;
 import ca.cours5b5.vickielanglois.controleurs.ControleurModeles;
 import ca.cours5b5.vickielanglois.donnees.Disque;
 import ca.cours5b5.vickielanglois.donnees.SauvegardeTemporaire;
+import ca.cours5b5.vickielanglois.donnees.Serveur;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 
 
@@ -27,8 +28,8 @@ public abstract class Activite extends AppCompatActivity {
 
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
-                Disque.getInstance());
-        
+                Disque.getInstance(), Serveur.getInstance());
+
     }
 
     protected void initialiserApplication(){
