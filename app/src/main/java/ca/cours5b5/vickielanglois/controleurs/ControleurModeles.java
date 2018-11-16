@@ -19,9 +19,11 @@ import ca.cours5b5.vickielanglois.donnees.Serveur;
 import ca.cours5b5.vickielanglois.donnees.SourceDeDonnees;
 import ca.cours5b5.vickielanglois.exceptions.ErreurModele;
 import ca.cours5b5.vickielanglois.global.GConstantes;
+import ca.cours5b5.vickielanglois.modeles.Identifiable;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
+import ca.cours5b5.vickielanglois.modeles.MPartieReseau;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 import ca.cours5b5.vickielanglois.donnees.Disque;
 import ca.cours5b5.vickielanglois.usagers.UsagerCourant;
@@ -77,7 +79,7 @@ public final class ControleurModeles {
     }
 
 
-    private static Modele chargerViaSequenceDeChargement(final String nomModele){
+   /* private static Modele chargerViaSequenceDeChargement(final String nomModele){
         Log.d("Atelier 12", "chargerViaSequenceDeChargement");
 
         Modele modele = creerModeleSelonNom(nomModele);
@@ -99,7 +101,7 @@ public final class ControleurModeles {
         }
 
         return modele;
-    }
+    }*/
 
     public static void sauvegarderModele(String nomModele) throws ErreurModele {
         Log.d("Atelier 12", "sauvegarderModele");
@@ -131,18 +133,23 @@ public final class ControleurModeles {
         }
     }
 
-    private static String getCheminSauvegarde(String nomModele){
+     static String getCheminSauvegarde(final String nomModele){
         Log.d("Atelier 12", "getCheminSauvegarde");
 
-        String idUsager = UsagerCourant.getId();
-        String cheminSauvegarde = "";
+        Modele modele = modelesEnMemoire.get(nomModele);
 
-        if(idUsager != null && nomModele != null){
-            cheminSauvegarde = nomModele + "/" + idUsager;
-        }
+         String cheminSauvegarde = nomModele;
 
-        return  cheminSauvegarde;
+         if(modele instanceof Identifiable){
 
+             cheminSauvegarde += "/" + ((Identifiable) modele).getId();
+
+         }else{
+
+             cheminSauvegarde += "/" + UsagerCourant.getId();
+         }
+
+        return cheminSauvegarde;
     }
 
     private static void creerModeleSelonNom(String nomModele, final ListenerGetModele listenerGetModele) throws ErreurModele {

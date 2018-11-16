@@ -2,6 +2,7 @@ package ca.cours5b5.vickielanglois.donnees;
 
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,12 +22,17 @@ public class Serveur extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde) {
-        return null;
+    public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
+
+        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeud.setValue(objetJson);
+
     }
 
+    //Immplementer automatiquement
     @Override
-    public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
+    public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
+
         Log.d("Atelier 11", "sauvegarderModele");
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
@@ -36,25 +42,19 @@ public class Serveur extends SourceDeDonnees {
                 if (dataSnapshot.exists()) {
                     Map<String, Object> objetJson = (Map<String, Object>) dataSnapshot.getValue();
 
-                    //Donnees lues
+                    listenerChargement.reagirSucces(objetJson);
+
                 }else{
-                    // Pas de donnees dans ce noeud
+
+                    listenerChargement.reagirErreur(new Exception());
                 }
             }
 
-            @Override
+           @Override
             public void onCancelled(DatabaseError databaseError) {
-                    // Erreur de lecture
+               listenerChargement.reagirErreur(new Exception());
             }
         });
-
-        //?????????
-        noeud.setValue(objetJson);
-    }
-
-    //Immplementer automatiquement
-    @Override
-    public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
 
     }
 }

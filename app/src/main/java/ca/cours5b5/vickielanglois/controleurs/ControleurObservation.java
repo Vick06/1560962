@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 
@@ -23,13 +24,14 @@ public final class ControleurObservation {
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
         Log.d("control", "observerModele. ListenerObs");
+        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                observations.put(modele, listenerObservateur);
 
-        Modele modele = ControleurModeles.getModele(nomModele);
-
-        observations.put(modele, listenerObservateur);
-
-        listenerObservateur.reagirNouveauModele(modele);
-
+                listenerObservateur.reagirNouveauModele(modele);
+            }
+        });
     }
 
     public static void lancerObservation(Modele modele) {

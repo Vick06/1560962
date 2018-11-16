@@ -17,6 +17,8 @@ import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.global.GConstantes;
+import ca.cours5b5.vickielanglois.modeles.MPartie;
+import ca.cours5b5.vickielanglois.modeles.MPartieReseau;
 import ca.cours5b5.vickielanglois.vues.VMenuPrincipal;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
@@ -24,7 +26,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("atelier", "OnCreate.savedInstace state :: AMenuPrincipal");
+        Log.d("atelier", "OnCreate.savedInstance state :: AMenuPrincipal");
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
@@ -33,7 +35,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void fournirActions() {
-
+        Log.d("atelier 11", "fournirActions");
         fournirActionOuvrirMenuParametres();
 
         fournirActionDemarrerPartie();
@@ -42,7 +44,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void fournirActionOuvrirMenuParametres() {
-
+        Log.d("atelier 11", "fournirActionOuvrirMenuParametres");
         ControleurAction.fournirAction(this,
                 GCommande.OUVRIR_MENU_PARAMETRES,
                 new ListenerFournisseur() {
@@ -56,7 +58,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void fournirActionDemarrerPartie() {
-
+        Log.d("atelier 11", "fournirActionDemarrerPartie");
         ControleurAction.fournirAction(this,
                 GCommande.DEMARRER_PARTIE,
                 new ListenerFournisseur() {
@@ -84,7 +86,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void fournirActionConnection(){
-
+        Log.d("atelier 11", "fournirActionConnection");
         ControleurAction.fournirAction(this, GCommande.CONNEXION, new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
@@ -122,6 +124,18 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 Log.d("atelier 11", "Connexion echouee");
             }
         }
+    }
+
+    private void fournirActionJoindreOuCreerPartieReseau(){
+
+    }
+
+    private void transitionPartieReseau(){
+        Log.d("atelier 12", "transitionPartieReseau");
+        Intent intent = new Intent(this, APartieReseau.class);
+        intent.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
+        this.startActivity(intent);
+
     }
 
 }

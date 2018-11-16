@@ -8,6 +8,7 @@ import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.ControleurObservation;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.vickielanglois.exceptions.ErreurObservation;
+import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MParametresPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
 import ca.cours5b5.vickielanglois.modeles.Modele;
@@ -47,7 +48,9 @@ public class VPartie extends Vue {
 
     }
 
+    //TODO: appeler getNomModele() pour installer l'observaton
     private void observerPartie() {
+
 
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
@@ -99,6 +102,12 @@ public class VPartie extends Vue {
 
         grille.afficherJetons(partie.getGrille());
 
+    }
+
+    protected String getNomModele(){
+        MParametres.class.getSimpleName();
+
+        return null;
     }
 
 }
