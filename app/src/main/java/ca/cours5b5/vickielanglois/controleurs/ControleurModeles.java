@@ -43,8 +43,9 @@ public final class ControleurModeles {
         modelesEnMemoire = new HashMap<>();
 
         listeDeSauvegardes = new ArrayList<>();
-        listeDeSauvegardes.add(Disque.getInstance());
         listeDeSauvegardes.add(Serveur.getInstance());
+        listeDeSauvegardes.add(Disque.getInstance());
+
 
     }
 
@@ -73,8 +74,11 @@ public final class ControleurModeles {
         Modele modele = modelesEnMemoire.get(nomModele);
 
         if(modele == null){
-            final String mod = nomModele;
-            creerModeleEtChargerDonnees(mod, listenerGetModele);
+
+            creerModeleEtChargerDonnees(nomModele, listenerGetModele);
+
+        }else{
+            listenerGetModele.reagirAuModele(modele);
         }
     }
 
@@ -169,9 +173,22 @@ public final class ControleurModeles {
                     listenerGetModele.reagirAuModele(mPartie);
                 }
             });
+        }else if(nomModele.equals(MPartieReseau.class.getSimpleName())) {
+            getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+
+                @Override
+                public void reagirAuModele(Modele modele) {
+
+                    MParametres mParametres = (MParametres) modele;
+
+                    MPartieReseau mPartieReseau = new MPartieReseau(mParametres.getParametresPartie().cloner());
+
+                    listenerGetModele.reagirAuModele(mPartieReseau);
+                }
+            });
         }else{
 
-            throw new ErreurModele("Mauvais Modele: " + nomModele);
+            throw new ErreurModele("Modele inconnu: " + nomModele);
         }
 
 
@@ -213,11 +230,12 @@ public final class ControleurModeles {
         //Si plus grand que la temps de chargement
         if(indiceSourceCourante >= sequenceDeChargement.length) {
 
-            terminerChargement(modele, listenerGetModele);
+            chargementViaSourceCouranteOuSuivante(modele, cheminDeSauvegarde, listenerGetModele, indiceSourceCourante);
+
 
         }else{
 
-            chargementViaSourceCouranteOuSuivante(modele, cheminDeSauvegarde, listenerGetModele, indiceSourceCourante);
+            terminerChargement(modele, listenerGetModele);
         }
     }
 
@@ -246,9 +264,11 @@ public final class ControleurModeles {
     private static void terminerChargementAvecDonnees(Map<String, Object> objetJson, Modele modele, ListenerGetModele listenerGetModele){
         Log.d("Atelier 12", "TerminerChargementAvecDonnees");
 
-        modele.aPartirObjetJson(objetJson);
-         terminerChargement(modele, listenerGetModele);
+        if(objetJson != null) {
+            modele.aPartirObjetJson(objetJson);
 
+        }
+        terminerChargement(modele, listenerGetModele);
     }
 
     private static void terminerChargement(Modele modele, ListenerGetModele listenerGetModele){

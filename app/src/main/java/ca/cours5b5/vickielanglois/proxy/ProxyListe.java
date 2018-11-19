@@ -82,7 +82,7 @@ public class ProxyListe extends Proxy implements Fournisseur {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        }
+        };
 
     }
 

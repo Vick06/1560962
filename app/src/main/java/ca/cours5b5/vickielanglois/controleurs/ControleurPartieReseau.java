@@ -84,10 +84,10 @@ public class ControleurPartieReseau {
 
     private String getCheminCoupsJoueurInvite(String idJoueurHote){
 
-        String cheminInv = getCheminPartie(idJoueurHote);
+        String cheminInvite = getCheminPartie(idJoueurHote);
 
-        cheminInv += "/" + GConstantes.CLE_COUP_JOUEUR_INVITE;
-        return cheminInv;
+        cheminInvite += "/" + GConstantes.CLE_COUP_JOUEUR_INVITE;
+        return cheminInvite;
     }
 
     private String getCheminCoupsJoueurHote(String idJoueurHote){
@@ -108,6 +108,7 @@ public class ControleurPartieReseau {
     }
 
     public void detruireSauvegardeServeur() {
+
 
     }
 }

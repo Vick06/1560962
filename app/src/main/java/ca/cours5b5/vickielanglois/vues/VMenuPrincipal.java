@@ -21,6 +21,9 @@ public class VMenuPrincipal extends Vue {
     private Button boutonPartie;
     private Action actionPartie;
 
+    private Button boutonPartieReseau;
+    private Action actionPartieReseau;
+
     private Button boutonConnexion;
     private Action actionConnexion;
     private Action actionDeconnexion;
@@ -51,31 +54,28 @@ public class VMenuPrincipal extends Vue {
 
     private void recupererControles() {
 
-        boutonParametres = findViewById(R.id.bouton_parametres);
-
         boutonPartie = findViewById(R.id.bouton_partie);
-
+        boutonPartieReseau = findViewById(R.id.button_online);
+        boutonParametres = findViewById(R.id.bouton_parametres);
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
     }
 
     private void demanderActions() {
 
-        actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
-
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
-
+        actionPartieReseau = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
+        actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
-
-        actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
+       // actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
     }
 
-
     private void installerListeners() {
 
-        installerListenerParametres();
         installerListenerPartie();
+        installerListenerPartieReseau();
+        installerListenerParametres();
         installerListenerConnexion();
     }
 
@@ -88,6 +88,16 @@ public class VMenuPrincipal extends Vue {
             }
         });
 
+    }
+
+    private void installerListenerPartieReseau(){
+
+        boutonPartieReseau.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionPartieReseau.executerDesQuePossible();
+            }
+        });
     }
 
     private void installerListenerParametres() {

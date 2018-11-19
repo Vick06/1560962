@@ -28,4 +28,10 @@ public class AParametres extends Activite implements Fournisseur{
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d("Atelier","AParametres::onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
+
 }

@@ -26,12 +26,12 @@ public class MPartieReseau  extends  MPartie implements Fournisseur, Identifiabl
     public MPartieReseau(MParametresPartie parametres) {
         super(parametres);
 
-        fournirActionPlacerJeton();
         fournirActionRecevoirCoup();
-    }
+
+        }
 
         public String getId(){
-            return _idJoueurHote;
+            return idJoueurHote;
 
         }
 
@@ -43,7 +43,7 @@ public class MPartieReseau  extends  MPartie implements Fournisseur, Identifiabl
                         public void executer(Object... args) {
 
                             try{
-                                int colonne = (Integer) args[0];
+                                int colonne = ((Long) args[0]).intValue();
                                 recevoirCoupReseau(colonne);
 
                             }catch (ClassCastException e){
@@ -81,10 +81,11 @@ public class MPartieReseau  extends  MPartie implements Fournisseur, Identifiabl
 
         @Override
         public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
-            super.aPartirObjetJson(objetJson);
+
 
             idJoueurInvite = (String) objetJson.get(_idJoueurInvite);
             idJoueurHote = (String) objetJson.get(_idJoueurHote);
+            super.aPartirObjetJson(objetJson);
         }
 
         @Override
@@ -99,4 +100,3 @@ public class MPartieReseau  extends  MPartie implements Fournisseur, Identifiabl
             return objetJson;
         }
     }
-}

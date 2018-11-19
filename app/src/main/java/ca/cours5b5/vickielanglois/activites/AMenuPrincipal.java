@@ -1,25 +1,18 @@
 package ca.cours5b5.vickielanglois.activites;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.signin.SignIn;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.global.GConstantes;
-import ca.cours5b5.vickielanglois.modeles.MPartie;
 import ca.cours5b5.vickielanglois.modeles.MPartieReseau;
-import ca.cours5b5.vickielanglois.vues.VMenuPrincipal;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -91,7 +84,9 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void fournirActionConnection(){
         Log.d("atelier 11", "fournirActionConnection");
-        ControleurAction.fournirAction(this, GCommande.CONNEXION, new ListenerFournisseur() {
+
+        ControleurAction.fournirAction(this, GCommande.CONNEXION,
+                new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
                 Log.d("atelier 11", "fournirActionConnection");
@@ -103,7 +98,9 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void transitionConnexion() { // #connection
         Log.d("atelier 11", "transitionConnexion");
+
         List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
+
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
@@ -120,6 +117,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         Log.d("atelier 11", "onActivityResult");
+
         if(requestCode == GConstantes.CODE_DE_CONNEXION){
             if(resultCode == RESULT_OK){
                 Log.d("atelier 11", "Connexion reussi");
@@ -146,7 +144,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
         Intent intent = new Intent(this, APartieReseau.class);
         intent.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
-        this.startActivity(intent);
+        startActivity(intent);
 
     }
 

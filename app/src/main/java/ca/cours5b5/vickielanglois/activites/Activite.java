@@ -28,11 +28,12 @@ public abstract class Activite extends AppCompatActivity {
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
 
-        Intent intention = new Intent(this, APartieReseau.class);
-
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
-                Disque.getInstance(), Serveur.getInstance(), new Transition(getIntent().getExtras()));
+                new Transition(getIntent().getExtras()),
+                Serveur.getInstance(),
+                Disque.getInstance()
+                );
 
     }
 

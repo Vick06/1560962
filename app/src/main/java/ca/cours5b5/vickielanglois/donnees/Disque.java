@@ -47,12 +47,12 @@ public final class Disque extends SourceDeDonnees {
 
         } catch (FileNotFoundException e) {
 
-            listenerChargement.reagirErreur(new FileNotFoundException());
+            listenerChargement.reagirErreur(e);
 
 
         } catch (IOException e) {
 
-            listenerChargement.reagirErreur(new IOException());
+            listenerChargement.reagirErreur(e);
 
         }
     }
