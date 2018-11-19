@@ -11,6 +11,7 @@ public abstract class Proxy {
     public Proxy(String cheminServeur){
 
         this.cheminServeur = cheminServeur;
+        this.connecterAuServeur();
     }
 
     public void connecterAuServeur(){

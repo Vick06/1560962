@@ -13,6 +13,7 @@ public class APartieReseau extends  Activite implements Fournisseur {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Log.d("atelier", "OnCreate.savedInstance state :: APartieReseau");
+
         setContentView(R.layout.activity_partie_reseau);
     }
 
@@ -20,6 +21,7 @@ public class APartieReseau extends  Activite implements Fournisseur {
     protected void onPause(){
         super.onPause();
         Log.d("atelier", "OnPause :: APartieReseau");
+
         ControleurPartieReseau.getInstance().detruireSauvegardeServeur();
         ControleurPartieReseau.getInstance().deconnecterDuServeur();
     }
@@ -28,6 +30,8 @@ public class APartieReseau extends  Activite implements Fournisseur {
     protected void onResume(){
         super.onResume();
         Log.d("atelier", "OnResume.savedInstance state :: APartieReseau");
+
+        ControleurPartieReseau.getInstance().connecterAuServeur();
     }
 
     @Override

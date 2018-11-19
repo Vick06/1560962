@@ -36,11 +36,15 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void fournirActions() {
         Log.d("atelier 11", "fournirActions");
+
         fournirActionOuvrirMenuParametres();
 
         fournirActionDemarrerPartie();
 
         fournirActionConnection();
+
+        fournirActionJoindreOuCreerPartieReseau();
+
     }
 
     private void fournirActionOuvrirMenuParametres() {
@@ -128,10 +132,18 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void fournirActionJoindreOuCreerPartieReseau(){
 
+        ControleurAction.fournirAction(this, GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        transitionPartieReseau();
+                    }
+                });
     }
 
     private void transitionPartieReseau(){
         Log.d("atelier 12", "transitionPartieReseau");
+
         Intent intent = new Intent(this, APartieReseau.class);
         intent.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
         this.startActivity(intent);

@@ -50,12 +50,13 @@ public class VPartie extends Vue {
 
     //TODO: appeler getNomModele() pour installer l'observaton
     private void observerPartie() {
+        String nomModele = getNomModele();
 
-
-        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
+        ControleurObservation.observerModele(nomModele,
                 new ListenerObservateur() {
                     @Override
                     public void reagirNouveauModele(Modele modele) {
+                        Log.d("Atelier 12", "VueObservation, VPartie, reagirNouveauModele" + modele.getClass().getSimpleName());
 
                         MPartie partie = getPartie(modele);
 
@@ -67,6 +68,7 @@ public class VPartie extends Vue {
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
+                        Log.d("Atelier 12", "VueObservation, VPartie, reagirChangementModele" + modele.getClass().getSimpleName());
 
                         MPartie partie = getPartie(modele);
 
@@ -105,9 +107,7 @@ public class VPartie extends Vue {
     }
 
     protected String getNomModele(){
-        MParametres.class.getSimpleName();
-
-        return null;
+        return MPartie.class.getSimpleName();
     }
 
 }
