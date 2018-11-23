@@ -2,26 +2,32 @@ package ca.cours5b5.vickielanglois.usagers;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Objects;
+import ca.cours5b5.vickielanglois.global.GConstantes;
 
-public class UsagerCourant {
+public final class UsagerCourant {
 
-    public static boolean userConnected(){
+    private UsagerCourant(){}
 
-        return FirebaseAuth.getInstance().getCurrentUser() != null;
+    public static boolean siUsagerConnecte(){
+        return FirebaseAuth.getInstance().getUid() != null;
     }
 
-    public static String getId() {
+    public static String getId(){
 
-        String id = null;
+        if(siUsagerConnecte()){
 
-        if(userConnected()){
+            return FirebaseAuth.getInstance().getUid();
 
-            id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }else{
 
-            //id = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            return GConstantes.ID_PAR_DEFAUT;
+
         }
-
-        return id;
     }
+
+    public static boolean estCeUsagerCourant(String idJoueur) {
+        return getId().equals(idJoueur);
+    }
+
+
 }

@@ -1,37 +1,55 @@
 package ca.cours5b5.vickielanglois.activites;
 
+
 import android.os.Bundle;
 import android.util.Log;
 
 import ca.cours5b5.vickielanglois.R;
+import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
 import ca.cours5b5.vickielanglois.controleurs.ControleurModeles;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
+import ca.cours5b5.vickielanglois.modeles.MPartie;
+
 
 public class AParametres extends Activite implements Fournisseur{
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Examen3","AParametre :: onCreate.savedInstanceState");
         super.onCreate(savedInstanceState);
-        Log.d("atelier", "OnCreate.savedInstanceState :: AParametres");
         setContentView(R.layout.activity_parametres);
 
+        fournirActions();
+
+    }
+
+
+    private void fournirActions() {
+        Log.d("Examen3","AParametre :: fournirAction");
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+
+                    }
+                });
     }
 
     @Override
     protected void onPause() {
+        Log.d("Examen3","AParametre :: onPause");
         super.onPause();
-
-        Log.d("atelier", "OnPause :: AParametres");
 
         ControleurModeles.sauvegarderModele(MParametres.class.getSimpleName());
 
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d("Atelier","AParametres::onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-    }
 
 }

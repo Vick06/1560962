@@ -5,7 +5,13 @@ import android.util.AttributeSet;
 
 import ca.cours5b5.vickielanglois.modeles.MPartieReseau;
 
+
 public class VPartieReseau extends VPartie {
+
+
+    private VGrille grille;
+
+
     public VPartieReseau(Context context) {
         super(context);
     }
@@ -18,10 +24,10 @@ public class VPartieReseau extends VPartie {
         super(context, attrs, defStyleAttr);
     }
 
+
     @Override
     protected String getNomModele(){
-
         return MPartieReseau.class.getSimpleName();
+    }
 
-       }
 }

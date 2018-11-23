@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import java.util.Map;
 
-
+import ca.cours5b5.vickielanglois.exceptions.ErreurModele;
 import ca.cours5b5.vickielanglois.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
 
-    private Bundle bundle;
+    protected Bundle bundle;
+
+    public SauvegardeTemporaire(){}
 
     public SauvegardeTemporaire(Bundle bundle){
         this.bundle = bundle;
@@ -17,10 +19,14 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
     @Override
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
+        if(bundle == null){
+            listenerChargement.reagirErreur(new ErreurModele("Le bundle est null"));
+            return;
+        }
 
         String cle = getCle(cheminSauvegarde);
 
-        if(bundle != null && bundle.containsKey(cle)) {
+        if(bundle.containsKey(cle)){
 
             String json = bundle.getString(cle);
 
@@ -28,32 +34,42 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
             listenerChargement.reagirSucces(objetJson);
 
+        }else{
+
+            listenerChargement.reagirErreur(new ErreurModele("La clé " + cheminSauvegarde + " n'est pas dans la sauvegarde temporaire"));
         }
-
-            listenerChargement.reagirErreur(new Exception());
-
-
     }
+
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
-        if(bundle != null){
-
-            String json = Jsonification.enChaineJson(objetJson);
-            bundle.putString(getCle(cheminSauvegarde), json);
-
+        if(bundle == null){
+            return;
         }
+
+        String cle = getCle(cheminSauvegarde);
+
+        String json = Jsonification.enChaineJson(objetJson);
+        bundle.putString(cle, json);
+
     }
+
 
     private String getCle(String cheminSauvegarde){
-
-        String nomModele = null;
-
-        if(cheminSauvegarde != null){
-
-            nomModele = cheminSauvegarde.split("/")[0];
-        }
-        return nomModele;
+        return getNomModele(cheminSauvegarde);
     }
+
+
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+        if(bundle == null){
+            return;
+        }
+
+        String cle = getCle(cheminSauvegarde);
+
+        bundle.remove(cle);
+    }
+
 
 }
