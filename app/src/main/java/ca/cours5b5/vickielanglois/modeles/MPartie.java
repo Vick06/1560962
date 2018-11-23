@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
+import ca.cours5b5.vickielanglois.controleurs.ControleurPartie;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.vickielanglois.exceptions.ErreurAction;
@@ -15,6 +16,7 @@ import ca.cours5b5.vickielanglois.global.GCouleur;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
 
 public class MPartie extends Modele implements Fournisseur {
+
 
     @AttributSerialisable
     public MParametresPartie parametres;
@@ -27,7 +29,7 @@ public class MPartie extends Modele implements Fournisseur {
     private MGrille grille;
     private GCouleur couleurCourante;
 
-    public MPartie(MParametresPartie parametres){
+    public MPartie(MParametresPartie parametres) {
 
         this.parametres = parametres;
 
@@ -58,18 +60,19 @@ public class MPartie extends Modele implements Fournisseur {
     protected void fournirActionPlacerJeton() {
 
         ControleurAction.fournirAction(this,
-                GCommande.JOUER_COUP_ICI,
+                GCommande.PLACER_JETON_ICI,
                 new ListenerFournisseur() {
+
                     @Override
                     public void executer(Object... args) {
-                        try{
+                        try {
 
                             int colonne = (Integer) args[0];
 
                             jouerCoup(colonne);
 
 
-                        }catch(ClassCastException e){
+                        } catch (ClassCastException e) {
 
                             throw new ErreurAction(e);
 
@@ -78,30 +81,43 @@ public class MPartie extends Modele implements Fournisseur {
                 });
     }
 
+
     protected void jouerCoup(int colonne) {
 
-        if(siCoupLegal(colonne)){
+        if (siCoupLegal(colonne)) {
+            jouerCoupLegal(colonne);
+        }
+    }
 
-            listeCoups.add(colonne);
 
-            grille.placerJeton(colonne, couleurCourante);
+    protected void jouerCoupLegal(int colonne) {
+
+        listeCoups.add(colonne);
+        grille.placerJeton(colonne, couleurCourante);
+        
+        if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
+
+            ControleurPartie.getInstance().gagnerPartie(couleurCourante);
+
+        } else {
 
             prochaineCouleurCourante();
 
         }
     }
 
-    private boolean siCoupLegal(int colonne){
+    protected boolean siCoupLegal(int colonne) {
 
         MColonne mColonne = grille.getColonnes().get(colonne);
 
-        return mColonne.nombreDeJetons() < parametres.getHauteur();
+        return mColonne.getJetons().size() < parametres.getHauteur();
 
     }
 
-    private void prochaineCouleurCourante(){
 
-        switch(couleurCourante){
+    private void prochaineCouleurCourante() {
+
+        switch (couleurCourante) {
 
             case ROUGE:
                 couleurCourante = GCouleur.JAUNE;
@@ -123,9 +139,9 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
 
-        parametres.aPartirObjetJson((Map<String, Object>)objetJson.get(__parametres));
+        parametres.aPartirObjetJson((Map<String, Object>) objetJson.get(__parametres));
 
         initialiserCouleurCourante();
 
@@ -133,7 +149,7 @@ public class MPartie extends Modele implements Fournisseur {
 
         List<String> listeCoupsObjetJson = (List<String>) objetJson.get(__listeCoups);
 
-        if(listeCoupsObjetJson != null){
+        if (listeCoupsObjetJson != null) {
 
             List<Integer> coupsARejouer = listeCoupsAPartirJson(listeCoupsObjetJson);
             rejouerLesCoups(coupsARejouer);
@@ -143,10 +159,9 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
-
         List<Integer> listeCoups = new ArrayList<>();
 
-        for(String coupChaine : listeCoupsObjetJson){
+        for (String coupChaine : listeCoupsObjetJson) {
 
             listeCoups.add(Integer.valueOf(coupChaine));
 
@@ -167,6 +182,7 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
+
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
@@ -178,18 +194,22 @@ public class MPartie extends Modele implements Fournisseur {
 
     }
 
-    private  List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
 
+    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
         List<String> listeCoupsObjetJson = new ArrayList<>();
 
-        for(Integer coup : listeCoups){
+        for (Integer coup : listeCoups) {
 
             listeCoupsObjetJson.add(coup.toString());
 
         }
 
         return listeCoupsObjetJson;
-
     }
+
+    public GCouleur getCouleurCourante() {
+        return couleurCourante;
+    }
+
 
 }

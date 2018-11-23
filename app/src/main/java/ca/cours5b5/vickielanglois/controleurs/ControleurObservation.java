@@ -1,7 +1,5 @@
 package ca.cours5b5.vickielanglois.controleurs;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +11,7 @@ public final class ControleurObservation {
 
     private ControleurObservation(){}
 
+
     private static Map<Modele, ListenerObservateur> observations;
 
     static {
@@ -21,22 +20,23 @@ public final class ControleurObservation {
 
     }
 
+
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
-        Log.d("control", "observerModele. ListenerObs");
-        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
-            @Override
-            public void reagirAuModele(Modele modele) {
-                observations.put(modele, listenerObservateur);
+        ControleurModeles.getModele(nomModele,
+                new ListenerGetModele() {
+                    @Override
+                    public void reagirAuModele(Modele modele) {
 
-                listenerObservateur.reagirNouveauModele(modele);
-            }
-        });
+                        observations.put(modele, listenerObservateur);
+                        listenerObservateur.reagirNouveauModele(modele);
+
+                    }
+                });
     }
 
-    public static void lancerObservation(Modele modele) {
 
-        Log.d("control", "lancerObser. MOdele  modele");
+    public static void lancerObservation(Modele modele) {
 
         final ListenerObservateur listenerObservateur = observations.get(modele);
 
@@ -47,12 +47,12 @@ public final class ControleurObservation {
         }
     }
 
-    public static void detruireObservation(Modele modele) {
 
-        Log.d("control", "detruireObservation. Modele modele");
+    public static void detruireObservation(Modele modele) {
 
         observations.remove(modele);
 
     }
+
 
 }
