@@ -129,8 +129,12 @@ public class VMenuPrincipal extends Vue {
                 }else{
                     Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
                     actionConnexion.executerDesQuePossible();
-                    actionConnexion.notify();
+                    //actionConnexion.notify();
                     boutonConnexion.setText(R.string.deconnexion);
+
+                    if(UsagerCourant.siUsagerConnecte()){
+                        actionPartieReseau.executerDesQuePossible();
+                    }
                 }
             }
         });
@@ -154,7 +158,6 @@ public class VMenuPrincipal extends Vue {
             }
         });
     }
-
 
     private void ajusterTexteConnexionDeconnexion() {
         if(UsagerCourant.siUsagerConnecte()){
