@@ -3,6 +3,7 @@ package ca.cours5b5.vickielanglois.activites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
@@ -17,6 +18,7 @@ import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.vickielanglois.global.GCommande;
+import ca.cours5b5.vickielanglois.usagers.UsagerCourant;
 
 import static ca.cours5b5.vickielanglois.global.GConstantes.CODE_CONNEXION_FIREBASE;
 
@@ -29,6 +31,10 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
+
+        if(!UsagerCourant.siUsagerConnecte()){
+            Snackbar.make(findViewById(R.id.Menu), R.string.Message, Snackbar.LENGTH_LONG).show();
+        }
 
     }
 
@@ -180,6 +186,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         // Rien
+
+                        Snackbar.make(findViewById(R.id.Menu), R.string.Message, Snackbar.LENGTH_LONG).show();
 
                     }
                 });

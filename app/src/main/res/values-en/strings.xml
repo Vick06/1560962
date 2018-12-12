@@ -30,5 +30,7 @@
     <string name="ROUGE">red</string>
     <string name="JAUNE">yellow</string>
 
+    <string name="Message">You have to be connected before being abled to play !</string>
+
 
 </resources>

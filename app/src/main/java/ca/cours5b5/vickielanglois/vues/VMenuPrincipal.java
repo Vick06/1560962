@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import ca.cours5b5.vickielanglois.R;
 import ca.cours5b5.vickielanglois.controleurs.Action;
@@ -54,6 +55,10 @@ public class VMenuPrincipal extends Vue {
 
         ajusterTexteConnexionDeconnexion();
 
+        if(!UsagerCourant.siUsagerConnecte()){
+            Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -87,6 +92,27 @@ public class VMenuPrincipal extends Vue {
 
     private void installerListeners() {
 
+       /**/
+
+        boutonPartie.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(UsagerCourant.siUsagerConnecte()){
+                    actionPartie.executerDesQuePossible();
+                }else{
+                    Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
+
+                    actionConnexion.executerDesQuePossible();
+                    boutonConnexion.setText(R.string.deconnexion);
+
+                    if(UsagerCourant.siUsagerConnecte()){
+                        actionPartie.executerDesQuePossible();
+                    }
+                }
+            }
+        });
+
         boutonParametres.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,17 +120,18 @@ public class VMenuPrincipal extends Vue {
             }
         });
 
-        boutonPartie.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                actionPartie.executerDesQuePossible();
-            }
-        });
-
         boutonPartieReseau.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionPartieReseau.executerDesQuePossible();
+
+                if(UsagerCourant.siUsagerConnecte()){
+                    actionPartieReseau.executerDesQuePossible();
+                }else{
+                    Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
+                    actionConnexion.executerDesQuePossible();
+                    actionConnexion.notify();
+                    boutonConnexion.setText(R.string.deconnexion);
+                }
             }
         });
 
