@@ -18,6 +18,7 @@ import ca.cours5b5.vickielanglois.global.GConstantes;
 import ca.cours5b5.vickielanglois.modeles.Identifiable;
 import ca.cours5b5.vickielanglois.modeles.MParametres;
 import ca.cours5b5.vickielanglois.modeles.MPartie;
+import ca.cours5b5.vickielanglois.modeles.MPartieIA;
 import ca.cours5b5.vickielanglois.modeles.MPartieReseau;
 import ca.cours5b5.vickielanglois.modeles.Modele;
 import ca.cours5b5.vickielanglois.donnees.Disque;
@@ -231,6 +232,10 @@ public final class ControleurModeles {
 
             creerPartieReseau(listenerGetModele);
 
+        }else if(nomModele.equals(MPartieIA.class.getSimpleName())) {
+
+            creerPartieIA(listenerGetModele);
+
         }else{
 
             throw new ErreurModele("nomModèle inconnu: " + nomModele);
@@ -263,6 +268,19 @@ public final class ControleurModeles {
                 MParametres mParametres = (MParametres) modele;
 
                 listenerGetModele.reagirAuModele(new MPartieReseau(mParametres.getParametresPartie().cloner()));
+
+            }
+        });
+    }
+
+    private static void creerPartieIA(final ListenerGetModele listenerGetModele) {
+        getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+
+                MParametres mParametres = (MParametres) modele;
+
+                listenerGetModele.reagirAuModele(new MPartieIA(mParametres.getParametresPartie().cloner()));
 
             }
         });

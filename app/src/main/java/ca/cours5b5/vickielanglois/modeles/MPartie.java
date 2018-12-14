@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.cours5b5.vickielanglois.controleurs.Action;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
 import ca.cours5b5.vickielanglois.controleurs.ControleurPartie;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
@@ -14,6 +15,7 @@ import ca.cours5b5.vickielanglois.exceptions.ErreurSerialisation;
 import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.global.GCouleur;
 import ca.cours5b5.vickielanglois.serialisation.AttributSerialisable;
+import ca.cours5b5.vickielanglois.vues.VGrille;
 
 public class MPartie extends Modele implements Fournisseur {
 
@@ -26,8 +28,9 @@ public class MPartie extends Modele implements Fournisseur {
     public List<Integer> listeCoups;
     private final String __listeCoups = "listeCoups";
 
-    private MGrille grille;
+    public MGrille grille;
     private GCouleur couleurCourante;
+    private List<Integer> colonneFini;
 
     public MPartie(MParametresPartie parametres) {
 
@@ -45,8 +48,12 @@ public class MPartie extends Modele implements Fournisseur {
 
     private void initialiser() {
         listeCoups = new ArrayList<>();
+        colonneFini = new ArrayList<>();
     }
 
+    public List<Integer> getColonneFini(){
+        return colonneFini;
+    }
     private void initialiserCouleurCourante() {
         couleurCourante = GCouleur.ROUGE;
     }
@@ -84,9 +91,16 @@ public class MPartie extends Modele implements Fournisseur {
 
     protected void jouerCoup(int colonne) {
 
-        if (siCoupLegal(colonne)) {
+       /* if (siCoupLegal(colonne)) {
             jouerCoupLegal(colonne);
-        }
+
+        }*/
+
+       if(!siCoupLegal(colonne) || grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())){
+           VGrille.desactiverEntetes.add(colonne);
+       }else{
+           Action action = ControleurAction.demanderAction(GCommande.ENTETE);
+       }
     }
 
 
@@ -211,5 +225,7 @@ public class MPartie extends Modele implements Fournisseur {
         return couleurCourante;
     }
 
-
+    public boolean gagner(){
+        return grille.siCouleurGagne(couleurCourante, parametres.getPourGagner());
+    }
 }

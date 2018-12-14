@@ -33,11 +33,23 @@
         android:layout_marginTop="8dp"
         android:text="@string/jouer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/bouton_connexion"
-        app:layout_constraintStart_toStartOf="@+id/bouton_connexion"
-        app:layout_constraintTop_toBottomOf="@+id/bouton_connexion"
-        app:layout_constraintVertical_bias="0.17000002"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bouton_connexion" />
+
+    <Button
+        android:id="@+id/bouton_IA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="jouer_IA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bouton_partie_reseau" />
 
     <Button
         android:id="@+id/bouton_connexion"
@@ -64,8 +76,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/jouer_enligne"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/bouton_partie"
-        app:layout_constraintStart_toStartOf="@+id/bouton_partie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bouton_partie"
         app:layout_constraintVertical_bias="0.0" />
 </ca.cours5b5.vickielanglois.vues.VMenuPrincipal>

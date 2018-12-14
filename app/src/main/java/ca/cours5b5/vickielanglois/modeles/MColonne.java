@@ -9,11 +9,14 @@ import ca.cours5b5.vickielanglois.global.GCouleur;
 
 public class MColonne extends Modele {
 
+   private boolean coupPossible;
+
     private List<MJeton> jetons;
 
     public MColonne(){
 
         jetons = new ArrayList<>();
+
 
     }
 
@@ -28,7 +31,6 @@ public class MColonne extends Modele {
         jetons.add(new MJeton(couleur));
 
     }
-
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {

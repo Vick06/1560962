@@ -12,6 +12,7 @@
         <activity android:name="ca.cours5b5.vickielanglois.activites.AParametres"></activity>
         <activity android:name="ca.cours5b5.vickielanglois.activites.APartie"></activity>
         <activity android:name="ca.cours5b5.vickielanglois.activites.APartieReseau"></activity>
+        <activity android:name="ca.cours5b5.vickielanglois.activites.AIA"></activity>
         <activity android:name="ca.cours5b5.vickielanglois.activites.AMenuPrincipal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

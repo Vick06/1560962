@@ -52,6 +52,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
         fournirActionJoindreOuCreerPartieReseau();
 
+        fournirActionDemarrerIa();
+
     }
 
 
@@ -116,6 +118,15 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 });
     }
 
+    private void fournirActionDemarrerIa(){
+        ControleurAction.fournirAction(this, GCommande.DEMARRER_PARTIE_IA, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                transitionIA();
+            }
+        });
+    }
+
     private void fournirActionParametres() {
         Log.d("Examen3","AMenuPrincipal :: fournirActionParametres");
         ControleurAction.fournirAction(this,
@@ -155,6 +166,11 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         Intent intentionPartie = new Intent(this, APartie.class);
         startActivity(intentionPartie);
 
+    }
+
+    private void transitionIA(){
+        Intent intentionIA = new Intent(this, AIA.class);
+        startActivity(intentionIA);
     }
 
 

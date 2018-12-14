@@ -11,6 +11,7 @@ import java.util.List;
 
 import ca.cours5b5.vickielanglois.controleurs.Action;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
+import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.modeles.MColonne;
 import ca.cours5b5.vickielanglois.modeles.MGrille;
@@ -40,6 +41,8 @@ public class VGrille extends GridLayout {
     private Action actionEntete;
 
     private List<VEntete> entetes;
+
+    public static List<Integer> desactiverEntetes = new ArrayList<>();
 
 
     @Override
@@ -201,6 +204,33 @@ public class VGrille extends GridLayout {
 
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
 
+    }
+
+   /* private void desactiverEntete(){
+        ControleurAction.fournirAction(this, GCommande.ENTETE, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+
+                for (Colonne colonne : colonnesDeCases){
+                    int i = colonnesDeCases.indexOf(colonne);
+
+                    if(colonne.get((colonne.size() - 1)).isCouleur()){
+                        entetes.get(i).setEnabled(false);
+                        entetes.get(i).setActive(false);
+                    }
+                }
+                if(!desactiverEntetes.isEmpty()){
+                    desactiver();
+                }
+            }
+        });
+    }*/
+
+    private void desactiver(){
+
+        for(int i=0; i< desactiverEntetes.size(); i++){
+            entetes.get(desactiverEntetes.get(i)).setEnabled(false);
+        }
     }
 
 }

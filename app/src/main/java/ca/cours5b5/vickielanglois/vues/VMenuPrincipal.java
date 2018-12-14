@@ -42,6 +42,9 @@ public class VMenuPrincipal extends Vue {
     private Action actionConnexion;
     private Action actionDeconnexion;
 
+    private Button boutonIA;
+    private Action actionIA;
+
 
     @Override
     protected void onFinishInflate(){
@@ -72,6 +75,8 @@ public class VMenuPrincipal extends Vue {
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
+        boutonIA = findViewById(R.id.bouton_IA);
+
     }
 
     private void demanderActions() {
@@ -85,6 +90,8 @@ public class VMenuPrincipal extends Vue {
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
 
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
+
+        actionIA = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE_IA);
 
 
     }
@@ -157,6 +164,24 @@ public class VMenuPrincipal extends Vue {
 
             }
         });
+
+        boutonIA.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(UsagerCourant.siUsagerConnecte()){
+                    actionIA.executerDesQuePossible();
+                }else{
+                    Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
+                    actionConnexion.executerDesQuePossible();
+                    boutonConnexion.setText(R.string.deconnexion);
+
+                    if(UsagerCourant.siUsagerConnecte()){
+                        actionIA.executerDesQuePossible();
+                    }
+                }
+            }
+        });
     }
 
     private void ajusterTexteConnexionDeconnexion() {
@@ -170,5 +195,7 @@ public class VMenuPrincipal extends Vue {
 
         }
     }
+
+
 
 }
