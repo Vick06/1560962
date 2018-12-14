@@ -42,7 +42,7 @@ public class AParametres extends Activite implements Fournisseur{
 
                         ControleurModeles.detruireModele(MPartie.class.getSimpleName());
                         ControleurModeles.detruireModele(MPartieIA.class.getSimpleName());
-                        //VGrille.desactiverEntetes = new ArrayList<>();
+                        VGrille.desactiverEntetes = new ArrayList<>();
 
 
                     }

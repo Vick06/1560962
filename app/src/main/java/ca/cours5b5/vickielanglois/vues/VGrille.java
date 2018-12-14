@@ -2,6 +2,7 @@ package ca.cours5b5.vickielanglois.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
@@ -11,14 +12,16 @@ import java.util.List;
 
 import ca.cours5b5.vickielanglois.controleurs.Action;
 import ca.cours5b5.vickielanglois.controleurs.ControleurAction;
+import ca.cours5b5.vickielanglois.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.vickielanglois.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.vickielanglois.exceptions.ErreurAction;
 import ca.cours5b5.vickielanglois.global.GCommande;
 import ca.cours5b5.vickielanglois.modeles.MColonne;
 import ca.cours5b5.vickielanglois.modeles.MGrille;
 import ca.cours5b5.vickielanglois.modeles.MJeton;
 
 
-public class VGrille extends GridLayout {
+public class VGrille extends GridLayout implements Fournisseur{
 
     public VGrille(Context context) {
         super(context);
@@ -53,6 +56,7 @@ public class VGrille extends GridLayout {
 
         demanderActionEntete();
 
+        desactiverEntetes();
 
     }
 
@@ -201,34 +205,37 @@ public class VGrille extends GridLayout {
     }
 
     private void afficherJeton(int colonne, int rangee, MJeton jeton){
-
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
-
     }
 
-   /* private void desactiverEntete(){
-        ControleurAction.fournirAction(this, GCommande.ENTETE, new ListenerFournisseur() {
-            @Override
-            public void executer(Object... args) {
+    private void desactiverEntetes() {
+        ControleurAction.fournirAction(this,
+                GCommande.ENTETE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
 
-                for (Colonne colonne : colonnesDeCases){
-                    int i = colonnesDeCases.indexOf(colonne);
+                        for (Colonne colonne : colonnesDeCases) {
+                            Log.d("TPFinal","" + nombreRangees);
+                            if (colonne.get(nombreRangees-2).isCouleur()){
+                                int i = colonnesDeCases.indexOf(colonne);
+                               /* entetes.get(i).setEnabled(false);
+                                entetes.get(i).setActive(false);*/
+                                desactiverEntetes.add(i);
+                                desactiver();
+                            }
 
-                    if(colonne.get((colonne.size() - 1)).isCouleur()){
-                        entetes.get(i).setEnabled(false);
-                        entetes.get(i).setActive(false);
+                        }if(!desactiverEntetes.isEmpty()){
+                            desactiver();
+                        }
                     }
-                }
-                if(!desactiverEntetes.isEmpty()){
-                    desactiver();
-                }
-            }
-        });
-    }*/
+                });
+    }
 
     private void desactiver(){
 
-        for(int i=0; i< desactiverEntetes.size(); i++){
+        for(int i=0; i < desactiverEntetes.size(); i++){
+            entetes.get(desactiverEntetes.get(i)).setActive(false);
             entetes.get(desactiverEntetes.get(i)).setEnabled(false);
         }
     }

@@ -35,4 +35,15 @@ public class VEntete extends AppCompatButton {
     public int getColonne() {
         return colonne;
     }
+
+    private boolean active = true;
+
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
+
+

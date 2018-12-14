@@ -70,5 +70,9 @@ public class VCase extends AppCompatButton {
         }
     }
 
+    private boolean couleur = false;
 
+    public boolean isCouleur() {
+        return couleur;
+    }
 }

@@ -31,6 +31,8 @@ public class MPartie extends Modele implements Fournisseur {
     protected MGrille grille;
     protected GCouleur couleurCourante;
     private List<Integer> colonneFini;
+    private boolean active = false;
+
 
     public MPartie(MParametresPartie parametres) {
 
@@ -51,10 +53,11 @@ public class MPartie extends Modele implements Fournisseur {
         colonneFini = new ArrayList<>();
     }
 
+
     public List<Integer> getColonneFini(){
         return colonneFini;
     }
-    private void initialiserCouleurCourante() {
+    protected void initialiserCouleurCourante() {
         couleurCourante = GCouleur.ROUGE;
     }
 
@@ -87,19 +90,33 @@ public class MPartie extends Modele implements Fournisseur {
                     }
                 });
     }
+//FIXME
+    public boolean gagnant(){
+        return grille.siCouleurGagne(couleurCourante, parametres.getPourGagner());
+    }
 
 
     protected void jouerCoup(int colonne) {
 
-       /* if (siCoupLegal(colonne)) {
+        if (siCoupLegal(colonne)) {
             jouerCoupLegal(colonne);
 
-        }*/
 
-       if(!siCoupLegal(colonne) || grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())){
+
+       if(!siCoupLegal(colonne) && active || grille.siCouleurGagne(couleurCourante, parametres.getPourGagner()) && active){
+
+            Action action = ControleurAction.demanderAction(GCommande.DESACTIVER_ENTETE);
+            action.setArguments(colonne);
+            action.executerDesQuePossible();
            VGrille.desactiverEntetes.add(colonne);
+
+       }
+
+       active = true;
        }else{
-           Action action = ControleurAction.demanderAction(GCommande.ENTETE);
+            Action action = ControleurAction.demanderAction(GCommande.ENTETE);
+            action.setArguments(colonne);
+            action.executerDesQuePossible();
        }
     }
 
@@ -196,7 +213,6 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
@@ -225,7 +241,4 @@ public class MPartie extends Modele implements Fournisseur {
         return couleurCourante;
     }
 
-    public boolean gagner(){
-        return grille.siCouleurGagne(couleurCourante, parametres.getPourGagner());
-    }
 }
