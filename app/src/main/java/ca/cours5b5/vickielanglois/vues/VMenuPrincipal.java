@@ -42,8 +42,8 @@ public class VMenuPrincipal extends Vue {
     private Action actionConnexion;
     private Action actionDeconnexion;
 
-    private Button boutonIA;
-    private Action actionIA;
+    private Button bouton_IA;
+    private Action action_IA;
 
 
     @Override
@@ -75,7 +75,7 @@ public class VMenuPrincipal extends Vue {
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
-        boutonIA = findViewById(R.id.bouton_IA);
+        bouton_IA = findViewById(R.id.bouton_IA);
 
     }
 
@@ -91,7 +91,7 @@ public class VMenuPrincipal extends Vue {
 
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
-        actionIA = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE_IA);
+        action_IA = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE_IA);
 
 
     }
@@ -165,19 +165,19 @@ public class VMenuPrincipal extends Vue {
             }
         });
 
-        boutonIA.setOnClickListener(new OnClickListener() {
+        bouton_IA.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if(UsagerCourant.siUsagerConnecte()){
-                    actionIA.executerDesQuePossible();
+                    action_IA.executerDesQuePossible();
                 }else{
                     Toast.makeText(getContext(), R.string.Message, Toast.LENGTH_LONG).show();
                     actionConnexion.executerDesQuePossible();
                     boutonConnexion.setText(R.string.deconnexion);
 
                     if(UsagerCourant.siUsagerConnecte()){
-                        actionIA.executerDesQuePossible();
+                        action_IA.executerDesQuePossible();
                     }
                 }
             }

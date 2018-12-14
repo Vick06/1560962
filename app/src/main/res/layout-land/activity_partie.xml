@@ -7,7 +7,7 @@
     tools:context="ca.cours5b5.vickielanglois.activites.APartie">
 
     <TextView
-        android:id="@+id/texte_joueur_un"
+        android:id="@+id/joueurUnIA"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -19,13 +19,13 @@
         android:background="@color/ROUGE_FOND"
         android:textStyle="bold"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="@id/grille"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/grille"
-        app:layout_constraintTop_toTopOf="@id/grille" />
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/texte_joueur_deux"
+        android:id="@+id/joueurDeuxIA"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -36,10 +36,10 @@
         android:background="@color/JAUNE_FOND"
         android:textStyle="bold"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="@id/grille"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/grille"
-        app:layout_constraintTop_toTopOf="@id/grille" />
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ca.cours5b5.vickielanglois.vues.VGrille
         android:id="@+id/grille"

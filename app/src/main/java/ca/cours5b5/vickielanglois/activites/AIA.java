@@ -24,8 +24,8 @@ public class AIA extends Activite implements Fournisseur{
 
     private void fournirActionTerminerIA(){
 
-        ControleurAction.fournirAction(this,
-                GCommande.TERMINER_PARTIE_IA,
+        ControleurAction.fournirAction(this, GCommande.TERMINER_PARTIE,
+                //GCommande.TERMINER_PARTIE_IA,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {

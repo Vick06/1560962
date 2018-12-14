@@ -20,6 +20,7 @@
 
     <string name="joueur1">joueur1</string>
     <string name="joueur2">joueur2</string>
+    <string name="IA">IA</string>
 
 
     <string name="connexion">connexion</string>

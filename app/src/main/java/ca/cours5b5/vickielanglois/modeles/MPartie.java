@@ -28,8 +28,8 @@ public class MPartie extends Modele implements Fournisseur {
     public List<Integer> listeCoups;
     private final String __listeCoups = "listeCoups";
 
-    public MGrille grille;
-    private GCouleur couleurCourante;
+    protected MGrille grille;
+    protected GCouleur couleurCourante;
     private List<Integer> colonneFini;
 
     public MPartie(MParametresPartie parametres) {
@@ -46,7 +46,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     }
 
-    private void initialiser() {
+    protected void initialiser() {
         listeCoups = new ArrayList<>();
         colonneFini = new ArrayList<>();
     }
@@ -59,7 +59,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private void initialiserGrille() {
+    protected void initialiserGrille() {
         grille = new MGrille(parametres.getLargeur());
     }
 
@@ -129,7 +129,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private void prochaineCouleurCourante() {
+    protected void prochaineCouleurCourante() {
 
         switch (couleurCourante) {
 
@@ -172,7 +172,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
+    protected List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
         List<Integer> listeCoups = new ArrayList<>();
 
         for (String coupChaine : listeCoupsObjetJson) {
@@ -185,7 +185,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private void rejouerLesCoups(List<Integer> coupsARejouer) {
+    protected void rejouerLesCoups(List<Integer> coupsARejouer) {
 
         listeCoups.clear();
 
@@ -209,7 +209,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
+    protected List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
         List<String> listeCoupsObjetJson = new ArrayList<>();
 
         for (Integer coup : listeCoups) {

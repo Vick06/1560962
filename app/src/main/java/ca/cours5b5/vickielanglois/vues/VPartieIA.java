@@ -31,20 +31,21 @@ public class VPartieIA extends Vue{
         super(context, attrs, defStyleAttr);
     }
 
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
         initialiser();
         adapterTexteNomJoueurSiPaysage();
-       // observerPartie();
+        observerPartie();
     }
 
     private void initialiser() {
 
-       // grille = findViewById(R.id.grille);
+        grille = findViewById(R.id.grille);
         joueurUn = findViewById(R.id.joueurUnIA);
-        //joueurDeux = findViewById(R.id.jou);
+        joueurDeux = findViewById(R.id.joueurDeuxIA);
     }
 
     private void observerPartie() {

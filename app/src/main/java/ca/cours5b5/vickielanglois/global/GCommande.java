@@ -36,6 +36,8 @@ public enum GCommande {
 
     ENTETE,
 
+    IA_JOUER,
+
 
 
 }

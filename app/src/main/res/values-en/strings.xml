@@ -17,6 +17,7 @@
 
     <string name="joueur1">player1</string>
     <string name="joueur2">player2</string>
+    <string name="IA">IA</string>
 
     <string name="connexion">login</string>
     <string name="deconnexion">logout</string>
